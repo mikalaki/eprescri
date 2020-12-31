@@ -1,0 +1,38 @@
+
+/*Configuring Slider*/
+@media (min-width: 1024px) {
+  #heroCarousel div.slide-text-container-fix{
+        justify-content: left;
+  }
+  .slide-text{
+    background: #6c757dcc;
+    padding: 1% 1% 0.5% 1%;
+    /* float: left; */
+    /* vertical-align: bottom; */
+    border-radius: 15px;
+    width: 40%;
+    margin-left: 2%;
+  }
+}
+@media (max-width: 1023px) {
+  .slide-text{
+    background: #6c757dcc;
+    padding: 2.5% 2.5% 2.5% 2.5%;
+    border-radius: 25px;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+}
+#hero h2.slide-h2{
+  font-size: 40px;
+}
+
+.section-title h2.noncapitalize-h2-title{
+  text-transform: none;
+}
+
+section.about{
+  padding: 60px 0px 0px 0px;
+}
