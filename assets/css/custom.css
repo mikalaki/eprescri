@@ -36,3 +36,22 @@
 section.about{
   padding: 60px 0px 0px 0px;
 }
+
+#doc-area {
+  padding: 20px 0;
+}
+
+
+#doc-area li.list-group-item{
+  padding: 0.55rem 1rem;
+}
+
+#doc-area .col-sm-3{
+  padding-bottom: 5%;
+}
+
+@media (min-width: 576px) {
+  #doc-area .doc-area-main{
+    border-left: 1px solid black
+  }
+}
