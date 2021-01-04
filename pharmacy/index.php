@@ -40,7 +40,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2></h2>
         <ol>
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.php">Home</a></li>
           <li><a href="#">Pharmacy</a></li>
           <li>Search Prescription</li>
         </ol>
@@ -80,8 +80,6 @@
 
 
           <?php require_once('SSN_prescriptions.php'); ?>
-
-
           <!-- HERE WILL LOAD THE patient_prescription_table.php -->
         </div>
 

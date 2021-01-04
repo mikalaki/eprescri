@@ -42,20 +42,32 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <!-- <h1 class="logo mr-auto"><a href="index.html">Me &amp; Family</a></h1> -->
+      <!-- <h1 class="logo mr-auto"><a href="index.php">Me &amp; Family</a></h1> -->
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html" class="logo mr-auto"><img src="assets/img/eprescri-logo.png" alt="" class="img-fluid"></a>
+      <a href="index.php" class="logo mr-auto"><img src="assets/img/eprescri-logo.png" alt="" class="img-fluid"></a>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="index.html#about">About eprescri</a></li>
+          <li class="active"><a href="index.php">Home</a></li>
+          <li><a href="index.php#about">About eprescri</a></li>
           <li class="drop-down"><a href="">Log in</a>
             <ul>
-              <li><a href="login.html">Log in as Doctor</a></li>
-              <li><a href="login.html">Log in as Pharmacy</a></li>
-              <li><a href="login.html">Log in as Patient</a></li>
-              <li><a href="login.html">Log in as Company</a></li>
+              <!-- <script>
+              var li = document.getElementsByTagName("li");
+
+              for(var i = 0;i<li.length;i++){
+                  li[i].addEventListener("click", myScript);
+              }
+
+              function myScript(e){
+                  alert(e.target.attributes.id.value);
+              }
+              </script> -->
+
+              <li><a  id="doctor" href="login.php?type=doctor">Log in as Doctor</a></li>
+              <li><a  id="pharmacy"href="login.php?type=pharmacy">Log in as Pharmacy</a></li>
+              <li><a  id="patient" href="login.php?type=patient">Log in as Patient</a></li>
+              <li><a  id="company" href="login.php?type=company">Log in as Company</a></li>
             </ul>
           </li>
 
@@ -74,15 +86,37 @@
     <div class="fadeIn first">
       <img src="assets/img/eprescri-logo.png" id="logInLogo" alt="User Icon" />
     </div>
-
-    <h5 class="fadeIn first">Doctor's Application Login</h5>
+<!--This should be dynamic -->
+    <h5 class="fadeIn first">
+    <?php
+    if( $_GET["type"]=='doctor' ){
+      echo "Doctor's";
+    }
+    elseif($_GET["type"]=='pharmacy'){
+      echo "Pharmacy's";
+    }
+    elseif($_GET["type"]=='patient'){
+      echo "Patient's";
+    }
+    elseif($_GET["type"]=='company'){
+      echo "Company's";
+    }
+     ?>
+      Application Login</h5>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+    <form action="authenticate.php" method="post">
+      <label for="username">
+        <i class="fas fa-user"></i>
+      </label>
+      <input type="text" name="username" id="login" class="fadeIn second" name="login" placeholder="username">
+      <label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+      <input type="text" name = "password" id="password" class="fadeIn third" name="login" placeholder="password">
       <div >
       <input type="submit" id="logInButton" class=" fadeIn fourth " value="Log In" >
+
 </div>
     </form>
 
