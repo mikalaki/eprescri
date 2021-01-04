@@ -32,30 +32,8 @@
 </head>
 <body>
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-      <!-- <h1 class="logo mr-auto"><a href="index.html">Me &amp; Family</a></h1> -->
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="../index.html" class="logo mr-auto"><img src="../assets/img/eprescri-logo.png" alt="" class="img-fluid"></a>
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../index.html#about">About eprescri</a></li>
-          <!-- <li><a href="#">Medicines available</a></li>
-          <li><a href="#">Medicines' Companies</a></li> -->
-          <li class="drop-down"><a href="#log-in">Log in</a>
-            <ul>
-              <li><a href="#">Log in as Doctor</a></li>
-              <li><a href="#">Log in as Pharmacy</a></li>
-              <li><a href="#">Log in as Patient</a></li>
-              <li><a href="#">Log in as Company</a></li>
-            </ul>
-          </li>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
-        </ul>
-      </nav><!-- .nav-menu -->
-    </div>
-  </header><!-- End Header -->
+  <?php require_once('page_header.php'); ?>
+  <!-- End Header -->
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
@@ -92,7 +70,7 @@
             <div class="form-row">
               <div class="form-group col-md">
                 <label for="SearchpatientSSN">Patient's SSN</label>
-                <input NAME="searchInputPatient" type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
+                <input name="searchInputPatient" type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
               </div>
             </div>
 
@@ -100,110 +78,13 @@
 
           </form>
 
-          <table>
-            <tr>
-              <td> fromDate </td>
-                <td> toDate </td>
-                  <td> instructions </td>
-                    <td> medicine </td>
-                      <td> company </td>
-            </tr>
-            <?php
-$servername = "localhost";
-$username = "eprescriadmin";
-$password = "f4rm4k0";
-$dbname = "eprescridb";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
+          <?php require_once('SSN_prescriptions.php'); ?>
 
-if (!isset($_GET['searchInputPatient']))
-{
-  echo "enter a valid patientSSN";
-}
-else {
-  $patientSSN=$_GET['searchInputPatient'];
-
-if (isset($_GET['pageno'])) {
-    $pageno = $_GET['pageno'];
-} else {
-    $pageno = 1;
-}
-
-
-$sql1="SELECT prescriptionID FROM prescription WHERE patientSSN=" ."\"" . $patientSSN . "\"" ;
-$prescriptionIDs=$conn->query($sql1);
-
-if (mysqli_num_rows($prescriptionIDs)==0)
-{
-  echo "please enter a valid Patient SSN";
-  $conn->close();
-}
-else
-  {
-    $arr = array();
-    while ($row = mysqli_fetch_array($prescriptionIDs)) {
-        $arr[] = $row["prescriptionID"];
-    }
-  $presctiptionIDString=strval($arr[$pageno-1]);
-    $total_pages=count($arr);
-
-    $sql = "SELECT p.fromDate, p.toDate, p.instructions , m.name AS medicineName, c.name AS companyName
-    FROM prescription p
-    JOIN prescription_consistsof_medicine pcm ON (p.prescriptionID=pcm.prescriptionID)
-    JOIN medicine m ON (pcm.medicineCode=m.code AND m.companyID=pcm.companyID)
-    JOIN  company c ON (m.companyID=c.companyID)
-    WHERE p.patientSSN =\"" .$patientSSN ."\"". "AND p.prescriptionID="."\"".$presctiptionIDString."\"";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_array($result)) {
-     echo "<tr><td>"
-     . $row["fromDate"]."</td><td>"
-     . $row["toDate"].  "</td><td>"
-     . $row["instructions"].  "</td><td>"
-      .$row["medicineName"].  "</td><td>"
-       .$row["companyName"]. "</td>". "</tr>";
-    }
-    echo "</table>";
-    } else {
-    echo "0 results";
-    }
-    $conn->close();
-}
-}
-?>
-          </table>
-
-<ul class="pagination">
-    <li><a href="?pageno=1">First</a></li>
-    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-        <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-    </li>
-    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-        <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-    </li>
-    <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-</ul>
 
           <!-- HERE WILL LOAD THE patient_prescription_table.php -->
         </div>
-        <!-- <div class="col-md-6 d-flex align-items-stretch">
-          <div class="card">
-            <div class="card-img">
-              <img src="assets/img/events-2.jpg" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">James 6th Birthday</h5>
-              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
-            </div>
-          </div> -->
+
         </div>
       </div>
     </div>
@@ -215,13 +96,6 @@ else
     <div class="container">
       <h3>eprescri</h3>
       <p>Electronic prescription platform for a more direct and complete medical prescription process!</p>
-      <!-- <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div> -->
       <div class="copyright">
         Website developed from Michael Karatzas, Apostolos Moustaklis and Kyriakos Marantidis. Front end based on the theme:
       </div>

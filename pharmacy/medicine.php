@@ -32,30 +32,8 @@
 </head>
 <body>
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-      <!-- <h1 class="logo mr-auto"><a href="index.html">Me &amp; Family</a></h1> -->
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="../index.html" class="logo mr-auto"><img src="../assets/img/eprescri-logo.png" alt="" class="img-fluid"></a>
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../index.html#about">About eprescri</a></li>
-          <!-- <li><a href="#">Medicines available</a></li>
-          <li><a href="#">Medicines' Companies</a></li> -->
-          <li class="drop-down"><a href="#log-in">Log in</a>
-            <ul>
-              <li><a href="#">Log in as Doctor</a></li>
-              <li><a href="#">Log in as Pharmacy</a></li>
-              <li><a href="#">Log in as Patient</a></li>
-              <li><a href="#">Log in as Company</a></li>
-            </ul>
-          </li>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
-        </ul>
-      </nav><!-- .nav-menu -->
-    </div>
-  </header><!-- End Header -->
+  <?php require_once('page_header.php'); ?>
+  <!-- End Header -->
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
@@ -83,7 +61,7 @@
 
           </ul>
         </div>
-        <!-- Doctor's main Content -->
+        <!-- Pharmacy's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
             Available Medicines
@@ -99,75 +77,65 @@
                       <td> company </td>
             </tr>
             <?php
-$servername = "localhost";
-$username = "eprescriadmin";
-$password = "f4rm4k0";
-$dbname = "eprescridb";
+                require_once('../mysqli_connection.php');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
+                if (!isset($_GET['searchInputPatient']))
+                {
+                  echo "enter a valid patientSSN";
+                }
+                else {
+                  $patientSSN=$_GET['searchInputPatient'];
 
-if (!isset($_GET['searchInputPatient']))
-{
-  echo "enter a valid patientSSN";
-}
-else {
-  $patientSSN=$_GET['searchInputPatient'];
-
-if (isset($_GET['pageno'])) {
-    $pageno = $_GET['pageno'];
-} else {
-    $pageno = 1;
-}
+                if (isset($_GET['pageno'])) {
+                    $pageno = $_GET['pageno'];
+                } else {
+                    $pageno = 1;
+                }
 
 
-$sql1="SELECT prescriptionID FROM prescription WHERE patientSSN=" ."\"" . $patientSSN . "\"" ;
-$prescriptionIDs=$conn->query($sql1);
+                $sql1="SELECT prescriptionID FROM prescription WHERE patientSSN=" ."\"" . $patientSSN . "\"" ;
+                $prescriptionIDs=$conn->query($sql1);
 
-if (mysqli_num_rows($prescriptionIDs)==0)
-{
-  echo "please enter a valid Patient SSN";
-  $conn->close();
-}
-else
-  {
-    $arr = array();
-    while ($row = mysqli_fetch_array($prescriptionIDs)) {
-        $arr[] = $row["prescriptionID"];
-    }
-  $presctiptionIDString=strval($arr[$pageno-1]);
-    $total_pages=count($arr);
+                if (mysqli_num_rows($prescriptionIDs)==0)
+                {
+                  echo "please enter a valid Patient SSN";
+                  $conn->close();
+                }
+                else
+                  {
+                    $arr = array();
+                    while ($row = mysqli_fetch_array($prescriptionIDs)) {
+                        $arr[] = $row["prescriptionID"];
+                    }
+                  $presctiptionIDString=strval($arr[$pageno-1]);
+                    $total_pages=count($arr);
 
-    $sql = "SELECT p.fromDate, p.toDate, p.instructions , m.name AS medicineName, c.name AS companyName
-    FROM prescription p
-    JOIN prescription_consistsof_medicine pcm ON (p.prescriptionID=pcm.prescriptionID)
-    JOIN medicine m ON (pcm.medicineCode=m.code AND m.companyID=pcm.companyID)
-    JOIN  company c ON (m.companyID=c.companyID)
-    WHERE p.patientSSN =\"" .$patientSSN ."\"". "AND p.prescriptionID="."\"".$presctiptionIDString."\"";
-    $result = $conn->query($sql);
+                    $sql = "SELECT p.fromDate, p.toDate, p.instructions , m.name AS medicineName, c.name AS companyName
+                    FROM prescription p
+                    JOIN prescription_consistsof_medicine pcm ON (p.prescriptionID=pcm.prescriptionID)
+                    JOIN medicine m ON (pcm.medicineCode=m.code AND m.companyID=pcm.companyID)
+                    JOIN  company c ON (m.companyID=c.companyID)
+                    WHERE p.patientSSN =\"" .$patientSSN ."\"". "AND p.prescriptionID="."\"".$presctiptionIDString."\"";
+                    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_array($result)) {
-     echo "<tr><td>"
-     . $row["fromDate"]."</td><td>"
-     . $row["toDate"].  "</td><td>"
-     . $row["instructions"].  "</td><td>"
-      .$row["medicineName"].  "</td><td>"
-       .$row["companyName"]. "</td>". "</tr>";
-    }
-    echo "</table>";
-    } else {
-    echo "0 results";
-    }
-    $conn->close();
-}
-}
-?>
+                    if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = mysqli_fetch_array($result)) {
+                     echo "<tr><td>"
+                     . $row["fromDate"]."</td><td>"
+                     . $row["toDate"].  "</td><td>"
+                     . $row["instructions"].  "</td><td>"
+                      .$row["medicineName"].  "</td><td>"
+                       .$row["companyName"]. "</td>". "</tr>";
+                    }
+                    echo "</table>";
+                    } else {
+                    echo "0 results";
+                    }
+                    $conn->close();
+                }
+                }
+            ?>
           </table>
 
 <ul class="pagination">
