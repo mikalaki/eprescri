@@ -54,13 +54,13 @@
           <li><a href="../index.php#about">About eprescri</a></li>
           <!-- <li><a href="#">Medicines available</a></li>
           <li><a href="#">Medicines' Companies</a></li> -->
-          <li class="drop-down"><a href="#log-in">Log in</a>
-            <ul>
+          <li class="drop-down"><a href="#log-in">Log out</a>
+            <!-- <ul>
               <li><a href="../login.php">Log in as Doctor</a></li>
               <li><a href="../login.php">Log in as Pharmacy</a></li>
               <li><a href="../login.php">Log in as Patient</a></li>
               <li><a href="../login.php">Log in as Company</a></li>
-            </ul>
+            </ul> -->
           </li>
           <!-- <li><a href="contact.php">Contact</a></li> -->
 
@@ -68,7 +68,8 @@
       </nav><!-- .nav-menu -->
 
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
 
 
 
@@ -78,16 +79,17 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Watch a Patient's Record</h2>
+        <h2>Add New Prescription</h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
           <li><a href="#">Doctor</a></li>
-          <li>Patient's Record</li>
+          <li>New Prescription</li>
         </ol>
       </div>
 
     </div>
   </section><!-- End Breadcrumbs -->
+
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -101,8 +103,8 @@
             <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
             <a href="index.php"><li class="list-group-item">My Patients</li></a>
             <a href="prescriptions.php"><li class="list-group-item">Manage Prescriptions</li></a>
-            <a href="newprescription.php"><li class="list-group-item ">Add New Prescription</li></a>
-            <a href="watchapatient.php"><li class="list-group-item active">Watch a Patient's Record</li></a>
+            <a href="newprescription.php"><li class="list-group-item active">Add New Prescription</li></a>
+            <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
           </ul>
         </div>
@@ -110,42 +112,63 @@
         <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
-            Enter the SSN of a patient in order to see his medical prescriptions Record.
+            Complete the form bellow to add a new prescription.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
+
           <form>
-            <div class="form-row">
-              <div class="form-group col-md">
-                <label for="SearchpatientSSN">Patient's SSN</label>
-                <input type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
-              </div>
+            <div class="form-group">
+              <label for="patientSSN">Patient's SSN</label>
+              <input type="text" class="form-control" id="patientSSN" aria-describedby="patientSSNformHelp" placeholder="e.g. 01019012345">
+              <small id="patientSSNformHelp" class="form-text text-muted">Enter the SSN of the patient you want to write the prescription to.</small>
             </div>
 
-            <button type="submit" class="btn btn-primary">Search</button>
+
+            <div  class="form-group">
+              <label for="medicines">Medicines</label>
+              <input type="text" class="form-control" id="medicinesDoctor" placeholder=" e.g. 1) Xanax">
+              <ul id="ulMedicinesDoctor">
+              </ul>
+            </div>
+
+            <div class="form-group">
+              <label for="prescriptionInstructions">Instructions</label>
+              <textarea class="form-control" id="prescriptionInstructions" placeholder="write the instructions for the prescription (e.g. Two pills of 50mg every morning.)"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="from">From date:</label>
+              <input class="form-control" type="date" id="from" name="prescription-from"  aria-describedby="prescriptionfromHelp"
+                     value="2021-01-01"
+                     min="2020-01-01" max="2025-01-01">
+              <small id="patientSSNformHelp" class="form-text text-muted">The beginning date of the prescription.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="to">To date:</label>
+              <input class="form-control" type="date" id="to" name="prescription-to" aria-describedby="prescriptiontoHelp"
+                     value="2021-02-01"
+                     min="2020-01-01" max="2025-01-01">
+              <small id="prescriptiontoHelp" class="form-text text-muted">The end date of the prescription.</small>
+            </div>
+
+            <!-- <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+
+          <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <button id="addPrescription" type="submit" class="btn btn-primary">Add Prescription</button>
+    </div>
+  </div>
           </form>
-
-
-          <!-- HERE WILL LOAD THE patient_prescription_table.php -->
-
-
-
         </div>
 
-
-        <!-- <div class="col-md-6 d-flex align-items-stretch">
-          <div class="card">
-            <div class="card-img">
-              <img src="assets/img/events-2.jpg" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">James 6th Birthday</h5>
-              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
-            </div>
-          </div> -->
 
         </div>
       </div>

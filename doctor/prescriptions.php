@@ -78,11 +78,11 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Watch a Patient's Record</h2>
+        <h2>My Patients</h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
           <li><a href="#">Doctor</a></li>
-          <li>Patient's Record</li>
+          <li>My Patients</li>
         </ol>
       </div>
 
@@ -99,39 +99,63 @@
         <div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
-            <a href="index.php"><li class="list-group-item">My Patients</li></a>
-            <a href="prescriptions.php"><li class="list-group-item">Manage Prescriptions</li></a>
-            <a href="newprescription.php"><li class="list-group-item ">Add New Prescription</li></a>
-            <a href="watchapatient.php"><li class="list-group-item active">Watch a Patient's Record</li></a>
+            <a href="index.php"><li class="list-group-item ">My Patients</li></a>
+            <a href="prescriptions.php"><li class="list-group-item active">Manage Prescriptions</li></a>
+            <a href="newprescription.php"><li class="list-group-item">Add New Prescription</li></a>
+            <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
           </ul>
+
         </div>
 
-        <!-- Doctor's main Content -->
+
+         <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
-            Enter the SSN of a patient in order to see his medical prescriptions Record.
+            Here you see a list of the prescriptions you have wrote.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md">
-                <label for="SearchpatientSSN">Patient's SSN</label>
-                <input type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Search</button>
-          </form>
-
-
-          <!-- HERE WILL LOAD THE patient_prescription_table.php -->
-
-
-
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Prescription ID</th>
+                <th scope="col">Patien's SSN</th>
+                <th scope="col">Patien's Full Name</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>12345678911</td>
+                <td>Mark Otto</td>
+                <td>01/01/2021</td>
+                <td>01/01/2021</td>
+                <td><button type="button" class="btn btn-primary">Watch</button></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>12345678911</td>
+                <td>Jacob Thornton</td>
+                <td>01/01/2021</td>
+                <td>01/01/2021</td>
+                <td><button type="button" class="btn btn-primary">Watch</button></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>12345678911</td>
+                <td>Larry the Bird</td>
+                <td>01/01/2021</td>
+                <td>01/01/2021</td>
+                <td><button type="button" class="btn btn-primary">Watch</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
 

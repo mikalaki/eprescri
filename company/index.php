@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+.php<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,13 +56,13 @@
           <li><a href="#">Medicines' Companies</a></li> -->
           <li class="drop-down"><a href="#log-in">Log in</a>
             <ul>
-              <li><a href="../login.html">Log in as Doctor</a></li>
-              <li><a href="../login.html">Log in as Pharmacy</a></li>
-              <li><a href="../login.html">Log in as Patient</a></li>
-              <li><a href="../login.html">Log in as Company</a></li>
+              <li><a href="../login.php">Log in as Doctor</a></li>
+              <li><a href="../login.php">Log in as Pharmacy</a></li>
+              <li><a href="../login.php">Log in as Patient</a></li>
+              <li><a href="../login.php">Log in as Company</a></li>
             </ul>
           </li>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <!-- <li><a href="contact.php">Contact</a></li> -->
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -78,17 +78,16 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Add New Prescription</h2>
+        <h2>Available Medicines</h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Doctor</a></li>
-          <li>New Prescription</li>
+          <li><a href="#">Company</a></li>
+          <li>Medicines</li>
         </ol>
       </div>
 
     </div>
   </section><!-- End Breadcrumbs -->
-
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -99,82 +98,109 @@
         <!-- Doctor's Submenu -->
         <div class="col-sm-3">
           <ul class="list-group">
-            <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
-            <a href="index.php"><li class="list-group-item">My Patients</li></a>
-            <a href="prescriptions.html"><li class="list-group-item">Manage Prescriptions</li></a>
-            <a href="newprescription.html"><li class="list-group-item active">Add New Prescription</li></a>
-            <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
+            <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
+            <a href="newmedicine.php"><li class="list-group-item">Add , Remove , Update Medicines </li></a>
+
+
           </ul>
+
         </div>
 
-        <!-- Doctor's main Content -->
-        <div class="col-sm-9 doc-area-main">
-          <div class="alert alert-primary" role="alert">
-            Complete the form bellow to add a new prescription.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+
+         <!-- Doctor's main Content -->
+         <div class="col-sm-9 doc-area-main">
+           <div class="alert alert-primary" role="alert">
+             Currently Available medicines.
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+
+           <!-- php for load the available medicines -->
+           <?php
+           // Get a connection for the database
+           require_once('../mysqli_connection.php');
+
+           if ($conn) {
+             // echo "connected <br>";
+           } else {
+             echo "Problem Connecting to database";
+           }
+
+           // Create a query for the database
+           $query = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
+           company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance)AS 'substances',
+           medicine.price
+           FROM medicine
+           JOIN company ON medicine.companyID = company.companyID
+           JOIN medicine_substances ON (medicine_substances.code=medicine.code AND medicine_substances.companyID = medicine.companyID)
+           GROUP BY medcode,compID
+           ORDER BY medcode,compID";
+
+           // Get a response from the database by sending the connection
+           // and the query
+           $response = $conn->query($query);
+
+           // If the query executed properly proceed
+           if($response){
+
+           echo '<table class="table table-striped">
+
+           <tr>
+           <th scope="col"><b>Company\'s name</b></th>
+           <th scope="col"><b>Medicine\'s serial code</b></th>
+           <!-- <th scope="col"><b>Company\'s ID</b></th> -->
+           <th scope="col"><b>Medicine\'s name</b></th>
+
+           <th scope="col"><b>Category</b></th>
+           <th scope="col"><b>Milligrams</b></th>
+           <th scope="col"><b>Substances</b></th>
+           <th scope="col"><b>Price</b></th>
+           </tr>';
 
 
-          <form>
-            <div class="form-group">
-              <label for="patientSSN">Patient's SSN</label>
-              <input type="text" class="form-control" id="patientSSN" aria-describedby="patientSSNformHelp" placeholder="e.g. 01019012345">
-              <small id="patientSSNformHelp" class="form-text text-muted">Enter the SSN of the patient you want to write the prescription to.</small>
-            </div>
+
+           // mysqli_fetch_array will return a row of data from the query
+           // until no further data is available
+           $prev_medcode = 0;
+           $prev_compID = 0;
+           while($row = mysqli_fetch_array($response)){
+           echo '<tr><td>' .
+           $row['compname'] . '</td><td>' .
+           $row['medcode'] . '</td><td>' .
+           // $row['compID'] . '</td><td align="left">' .
+           $row['medname'] . '</td><td>' .
+           $row['category'] . '</td><td>' .
+           $row['milligrams'] . '</td><td>' .
+           //Printing multiple subastances of a medicine properly.
+           str_replace (",","<br>",$row['substances']) . '</td><td>' .
+           $row['price'] . '</td>';
+           echo '</tr>';
+
+           $prev_medcode = $row['medcode'];
+           $prev_compID  = $row['compID'];
 
 
-            <div  class="form-group">
-              <label for="medicines">Medicines</label>
-              <input type="text" class="form-control" id="medicinesDoctor" placeholder=" e.g. 1) Xanax">
-              <ul id="ulMedicinesDoctor">
-              </ul>
-            </div>
+           }
 
-            <div class="form-group">
-              <label for="prescriptionInstructions">Instructions</label>
-              <textarea class="form-control" id="prescriptionInstructions" placeholder="write the instructions for the prescription (e.g. Two pills of 50mg every morning.)"></textarea>
-            </div>
+           echo '</table>';
 
-            <div class="form-group">
-              <label for="from">From date:</label>
-              <input class="form-control" type="date" id="from" name="prescription-from"  aria-describedby="prescriptionfromHelp"
-                     value="2021-01-01"
-                     min="2020-01-01" max="2025-01-01">
-              <small id="patientSSNformHelp" class="form-text text-muted">The beginning date of the prescription.</small>
-            </div>
+           } else {
 
-            <div class="form-group">
-              <label for="to">To date:</label>
-              <input class="form-control" type="date" id="to" name="prescription-to" aria-describedby="prescriptiontoHelp"
-                     value="2021-02-01"
-                     min="2020-01-01" max="2025-01-01">
-              <small id="prescriptiontoHelp" class="form-text text-muted">The end date of the prescription.</small>
-            </div>
+           echo "Couldn't issue database query<br />";
 
-            <!-- <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> -->
+           echo mysqli_error($conn);
 
-          <div class="container">
-  <div class="row">
-    <div class="col-sm">
-    <button id="addPrescription" type="submit" class="btn btn-primary">Add Prescription</button>
-    </div>
-    <div class="col-sm">
-<button id="addMedicineDoctor" type="submit" class="btn btn-primary">Add Medicine</button>
-    </div>
-    <div class="col-sm">
-      <button id="deleteMedicineDoctor" type="submit" class="btn btn-primary">Delete Medicine</button>
-    </div>
-  </div>
-</div>
-          </form>
-        </div>
+           }
 
+           // Close connection to the database
+           mysqli_close($conn);
+
+           ?>
+
+
+         </div>
 
         <!-- <div class="col-md-6 d-flex align-items-stretch">
           <div class="card">

@@ -56,13 +56,13 @@
           <li><a href="#">Medicines' Companies</a></li> -->
           <li class="drop-down"><a href="#log-in">Log in</a>
             <ul>
-              <li><a href="../login.html">Log in as Doctor</a></li>
-              <li><a href="../login.html">Log in as Pharmacy</a></li>
-              <li><a href="../login.html">Log in as Patient</a></li>
-              <li><a href="../login.html">Log in as Company</a></li>
+              <li><a href="../login.php">Log in as Doctor</a></li>
+              <li><a href="../login.php">Log in as Pharmacy</a></li>
+              <li><a href="../login.php">Log in as Patient</a></li>
+              <li><a href="../login.php">Log in as Company</a></li>
             </ul>
           </li>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <!-- <li><a href="contact.php">Contact</a></li> -->
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -100,8 +100,8 @@
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
             <a href="index.php"><li class="list-group-item active">My Patients</li></a>
-            <a href="prescriptions.html"><li class="list-group-item">Manage Prescriptions</li></a>
-            <a href="newprescription.html"><li class="list-group-item">Add New Prescription</li></a>
+            <a href="prescriptions.php"><li class="list-group-item">Manage Prescriptions</li></a>
+            <a href="newprescription.php"><li class="list-group-item">Add New Prescription</li></a>
             <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
           </ul>

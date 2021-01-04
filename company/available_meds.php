@@ -78,11 +78,11 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Add New Prescription</h2>
+        <h2>Available Medicines</h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Doctor</a></li>
-          <li>New Prescription</li>
+          <li><a href="#">Company</a></li>
+          <li>Medicines</li>
         </ol>
       </div>
 
@@ -99,12 +99,9 @@
         <!-- Doctor's Submenu -->
         <div class="col-sm-3">
           <ul class="list-group">
-            <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
-            <a href="index.php"><li class="list-group-item">My Patients</li></a>
-            <a href="prescriptions.php"><li class="list-group-item">Manage Prescriptions</li></a>
-            <a href="newprescription.php"><li class="list-group-item">Add New Prescription</li></a>
-            <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
-            <a href="available_meds.php"><li class="list-group-item  active">Medicines available</li></a>
+            <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
+            <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
+            <a href="newmedicine.php"><li class="list-group-item">Add , Remove , Update Medicines </li></a>
           </ul>
          </div>
 

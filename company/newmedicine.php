@@ -56,13 +56,13 @@
           <li><a href="#">Medicines' Companies</a></li> -->
           <li class="drop-down"><a href="#log-in">Log in</a>
             <ul>
-              <li><a href="../login.html">Log in as Doctor</a></li>
-              <li><a href="../login.html">Log in as Pharmacy</a></li>
-              <li><a href="../login.html">Log in as Patient</a></li>
-              <li><a href="../login.html">Log in as Company</a></li>
+              <li><a href="../login.php">Log in as Doctor</a></li>
+              <li><a href="../login.php">Log in as Pharmacy</a></li>
+              <li><a href="../login.php">Log in as Patient</a></li>
+              <li><a href="../login.php">Log in as Company</a></li>
             </ul>
           </li>
-          <!-- <li><a href="contact.html">Contact</a></li> -->
+          <!-- <li><a href="contact.php">Contact</a></li> -->
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -78,16 +78,17 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>My Patients</h2>
+        <h2>Add , Remove , Update Medicine </h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Doctor</a></li>
-          <li>My Patients</li>
+          <li><a href="#">Company</a></li>
+          <li>Add , Remove , Update Medicine</li>
         </ol>
       </div>
 
     </div>
   </section><!-- End Breadcrumbs -->
+
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -98,64 +99,80 @@
         <!-- Doctor's Submenu -->
         <div class="col-sm-3">
           <ul class="list-group">
-            <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
-            <a href="index.php"><li class="list-group-item ">My Patients</li></a>
-            <a href="prescriptions.html"><li class="list-group-item active">Manage Prescriptions</li></a>
-            <a href="newprescription.html"><li class="list-group-item">Add New Prescription</li></a>
-            <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
+            <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
+            <a href="newmedicine.php"><li class="list-group-item">Add , Remove , Update Medicines </li></a>
           </ul>
-
         </div>
 
-
-         <!-- Doctor's main Content -->
+        <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
-            Here you see a list of the prescriptions you have wrote.
+            Complete the form bellow to add a new medicine.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Prescription ID</th>
-                <th scope="col">Patien's SSN</th>
-                <th scope="col">Patien's Full Name</th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>12345678911</td>
-                <td>Mark Otto</td>
-                <td>01/01/2021</td>
-                <td>01/01/2021</td>
-                <td><button type="button" class="btn btn-primary">Watch</button></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>12345678911</td>
-                <td>Jacob Thornton</td>
-                <td>01/01/2021</td>
-                <td>01/01/2021</td>
-                <td><button type="button" class="btn btn-primary">Watch</button></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>12345678911</td>
-                <td>Larry the Bird</td>
-                <td>01/01/2021</td>
-                <td>01/01/2021</td>
-                <td><button type="button" class="btn btn-primary">Watch</button></td>
-              </tr>
-            </tbody>
-          </table>
+          <form>
+            <div class="form-group">
+              <label for="patientSSN">Category</label>
+              <input type="text" class="form-control" id="medicineCategory" aria-describedby="patientSSNformHelp" placeholder="e.g. Antibiotcs">
+            </div>
+
+            <div  class="form-group">
+              <label for="medicines">Name</label>
+              <input type="text" class="form-control" id="medicineName" placeholder=" e.g. Cipro">
+              <ul id="ulMedicinesDoctor">
+              </ul>
+            </div>
+
+            <div  class="form-group">
+              <label for="medicines">Price</label>
+              <input type="text" class="form-control" id="medicineName" placeholder="e.g. 15€ ">
+              <ul id="medicinePrice">
+              </ul>
+            </div>
+
+
+            <div class="form-group">
+              <label for="prescriptionInstructions">Contradctions</label>
+              <textarea class="form-control" id="medicineContradictions" placeholder="Write the contradictions of the medicine "></textarea>
+            </div>
+
+            <div  class="form-group">
+              <label for="medicines">Milligrams</label>
+              <input type="text" class="form-control" id="medicineName" placeholder=" e.g. 500mg">
+              <ul id="ulMedicinesDoctor">
+              </ul>
+            </div>
+
+            <div class="form-group">
+              <label for="prescriptionInstructions">Description</label>
+              <textarea class="form-control" id="medicineDescription" placeholder="Write the description for the medicine "></textarea>
+            </div>
+
+
+
+            <!-- <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+
+          <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <button id="addPrescription" type="submit" class="btn btn-primary">Add Prescription</button>
+    </div>
+    <div class="col-sm">
+<button id="addMedicineDoctor" type="submit" class="btn btn-primary">Add Medicine</button>
+    </div>
+    <div class="col-sm">
+      <button id="deleteMedicineDoctor" type="submit" class="btn btn-primary">Delete Medicine</button>
+    </div>
+  </div>
+</div>
+          </form>
         </div>
 
 
