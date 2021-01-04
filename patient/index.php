@@ -41,7 +41,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <?php require_once('page_header.php'); ?>
+  <?php include('page_header.php'); ?>
   <!-- End Header -->
 
 

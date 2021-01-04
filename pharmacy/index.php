@@ -32,7 +32,7 @@
 </head>
 <body>
   <!-- ======= Header ======= -->
-  <?php require_once('page_header.php'); ?>
+  <?php include('page_header.php'); ?>
   <!-- End Header -->
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
