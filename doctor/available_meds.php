@@ -56,10 +56,10 @@
           <li><a href="#">Medicines' Companies</a></li> -->
           <li class="drop-down"><a href="#log-in">Log in</a>
             <ul>
-              <li><a href="#">Log in as Doctor</a></li>
-              <li><a href="#">Log in as Pharmacy</a></li>
-              <li><a href="#">Log in as Patient</a></li>
-              <li><a href="#">Log in as Company</a></li>
+              <li><a href="../login.html">Log in as Doctor</a></li>
+              <li><a href="../login.html">Log in as Pharmacy</a></li>
+              <li><a href="../login.html">Log in as Patient</a></li>
+              <li><a href="../login.html">Log in as Company</a></li>
             </ul>
           </li>
           <!-- <li><a href="contact.html">Contact</a></li> -->
@@ -112,6 +112,9 @@
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
             Currently Available medicines.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
 
           <!-- php for load the available medicines -->
