@@ -126,9 +126,11 @@
             </div>
 
 
-            <div class="form-group">
+            <div  class="form-group">
               <label for="medicines">Medicines</label>
-              <input type="text" class="form-control" id="medicines" placeholder=" e.g. 1) Xanax">
+              <input type="text" class="form-control" id="medicinesDoctor" placeholder=" e.g. 1) Xanax">
+              <ul id="ulMedicinesDoctor">
+              </ul>
             </div>
 
             <div class="form-group">
@@ -156,7 +158,20 @@
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div> -->
-            <button type="submit" class="btn btn-primary">Add Prescription</button>
+
+          <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <button id="addPrescription" type="submit" class="btn btn-primary">Add Prescription</button>
+    </div>
+    <div class="col-sm">
+<button id="addMedicineDoctor" type="submit" class="btn btn-primary">Add Medicine</button>
+    </div>
+    <div class="col-sm">
+      <button id="deleteMedicineDoctor" type="submit" class="btn btn-primary">Delete Medicine</button>
+    </div>
+  </div>
+</div>
           </form>
         </div>
 

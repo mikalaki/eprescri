@@ -158,4 +158,42 @@
     });
   });
 
+
+//// jquery for addinng and deleting medicine////
+var medicineAddedByDoctor=0;
+$(document).ready(function(){
+$("#addMedicineDoctor").on('click', function()
+{
+
+  var medicine= $("#medicinesDoctor").val();
+  var uniqueId=medicineAddedByDoctor.toString()+ "\" ";
+var idString="id="+"\"doctorMedicine" + uniqueId ;
+ var stringToAppend= "<li " + idString + " >" + "<p>" + medicine + "</p></li>";
+  medicineAddedByDoctor=medicineAddedByDoctor+1;
+  $("#ulMedicinesDoctor").append(stringToAppend);
+
+return false;
+});
+return false;
+});
+
+$(document).ready(function()
+  {
+    $("#deleteMedicineDoctor").on('click',function(){
+  medicineAddedByDoctor=medicineAddedByDoctor-1;
+var uniqueId=medicineAddedByDoctor.toString();
+var idString="#doctorMedicine" + uniqueId ;
+
+      $("#ulMedicinesDoctor li").eq(medicineAddedByDoctor).remove();
+
+return false;
+    });
+return false;
+  }
+);
+
+
+
+//////////////end /////////////
+
 })(jQuery);
