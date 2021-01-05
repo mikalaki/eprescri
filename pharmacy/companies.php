@@ -32,7 +32,7 @@
 </head>
 <body>
   <!-- ======= Header ======= -->
-  <?php include('page_header.php'); ?>
+  <?php require_once('page_header.php'); ?>
   <!-- End Header -->
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
@@ -40,9 +40,9 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2></h2>
         <ol>
-          <li><a href="../index.php">Home</a></li>
+          <li><a href="../index.html">Home</a></li>
           <li><a href="#">Pharmacy</a></li>
-          <li>Medicines</li>
+          <li>Companies</li>
         </ol>
       </div>
     </div>
@@ -56,27 +56,24 @@
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Pharmacy menu</u></strong></li>
             <a href="index.php"><li class="list-group-item ">Search Prescription</li></a>
-            <a href="medicine.php"><li class="list-group-item active">Medicines </li></a>
-            <a href="companies.php"><li class="list-group-item">Companies</li></a>
+            <a href="medicine.php"><li class="list-group-item ">Medicines </li></a>
+            <a href="companies.php"><li class="list-group-item active">Companies</li></a>
 
           </ul>
         </div>
         <!-- Pharmacy's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
-            Available Medicines
+            Medicine Producers
           </div>
 
 
           <table class="table table-striped">
                        <tr>
-                         <td> Name </td>
-                           <td> Company </td>
-                             <td> Price </td>
-                               <td> category</td>
-                                 <td> containdications</td>
-                                   <td> milligrams</td>
-                                 <td> prescription</td>
+                         <td> Name</td>
+                           <td> Telephone Number</td>
+                             <td> email</td>
+                                 <td> Website</td>
                        </tr>
 
            <?php
@@ -86,7 +83,7 @@
                } else {
                    $pageno = 1;
                }
-               $no_of_records_per_page = 3;
+               $no_of_records_per_page = 8;
                $offset = ($pageno-1) * $no_of_records_per_page;
 
                $conn=mysqli_connect("localhost","eprescriadmin","f4rm4k0","eprescridb");
@@ -96,25 +93,21 @@
                    die();
                }
 
-               $total_pages_sql = "SELECT COUNT(*) FROM medicine";
+               $total_pages_sql = "SELECT COUNT(*) FROM company";
                $result = mysqli_query($conn,$total_pages_sql);
                $total_rows = mysqli_fetch_array($result)[0];
                $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-               $sql = "SELECT m.name,c.name AS company,m.price,m.category,m.containdications,m.milligrams,m.description
-                FROM medicine m
-                JOIN company c ON (c.companyID=m.companyID)
+               $sql = "SELECT name,email,telephone_number,website
+              FROM company
                  LIMIT $offset, $no_of_records_per_page";
                $res_data = mysqli_query($conn,$sql);
                while($row = mysqli_fetch_array($res_data)){
                  echo "<tr><td>"
                      . $row["name"]."</td><td>"
-                     . $row["company"].  "</td><td>"
-                     . $row["price"].  "</td><td>"
-                      .$row["category"].  "</td><td>"
-                      .$row["containdications"].  "</td><td>"
-                      .$row["milligrams"].  "</td><td>"
-                       .$row["description"]. "</td>". "</tr>";
+                     . $row["telephone_number"].  "</td><td>"
+                     . $row["email"].  "</td><td>"
+                       .$row["website"]. "</td>". "</tr>";
                }
                echo "</table>";
                mysqli_close($conn);
