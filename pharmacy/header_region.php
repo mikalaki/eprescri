@@ -9,7 +9,7 @@
       <ul>
         <li><a href="../index.php">Home</a></li>
         <li ><a href="../index.php#about">About eprescri</a></li>
-        <li ><a href="../index.php">Log out</a>
+        <li ><a href="../logout.php">Log out</a>\
         </li>
       </ul>
     </nav><!-- .nav-menu -->
