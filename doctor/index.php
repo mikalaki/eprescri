@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+ ?>
 <html lang="en">
 
 <head>
@@ -37,11 +41,18 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<?php
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
+  require("please_login.php");
+}
+
+?>
 
 <body>
 
   <!-- ======= Header ======= -->
-  <?php include('page_header.php'); ?>
+  <?php include('header_region.php'); ?>
   <!-- End Header -->
 
 
@@ -134,6 +145,7 @@
               </tr>
             </tbody>
           </table>
+
         </div>
 
 

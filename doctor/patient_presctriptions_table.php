@@ -1,4 +1,10 @@
 <?php
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
+  require("please_login.php");
+}
+?>
+<?php
 // Get a connection for the database
 require_once('../mysqli_connection.php');
 

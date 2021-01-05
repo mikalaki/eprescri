@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+  // We need to use sessions, so you should always start sessions using the below code.
+  session_start();
+?>
 <html lang="en">
 
 <head>
@@ -30,9 +34,14 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<?php
+if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
+  require("please_login.php");
+}
+?>
 <body>
   <!-- ======= Header ======= -->
-  <?php require_once('page_header.php'); ?>
+  <?php require_once('header_region.php'); ?>
   <!-- End Header -->
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">

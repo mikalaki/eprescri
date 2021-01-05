@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+?>
 <html lang="en">
 
 <head>
@@ -36,10 +40,23 @@
   ======================================================== -->
 </head>
 
+<?php
+// If the user is not logged in redirect to the login page...
+if (isset($_SESSION['loggedin'])) {
+  echo "<section ><h3>Already Logged-in as a ".$_SESSION['usertype']."!</h3></section >";
+  exit;
+}
+
+// Default login.php for people trying to access it by writing the name of the file is pateint.
+if( !isset($_GET["type"]) ){
+  $_GET["type"]='patient';
+}
+?>
+
 <body>
 
   <!-- ======= Header ======= -->
-  <?php include('page_header.php'); ?>
+  <?php include('header_region.php'); ?>
   <!-- End Header -->
 
   <main id="main" class="loginForm">
@@ -66,6 +83,11 @@
     elseif($_GET["type"]=='company'){
       echo "Company's";
     }
+    // for people playing with the url- GET argument, we use Patient's login.
+    else{
+      $_GET["type"]='patient';
+      echo "Patient's";
+    }
      ?>
       Application Login</h5>
 
@@ -74,12 +96,13 @@
       <label for="username">
         <i class="fas fa-user"></i>
       </label>
-      <input type="text" name="username" id="login" class="fadeIn second" name="login" placeholder="username">
+      <input type="text" name="username" id="login" class="fadeIn second"  placeholder="username">
       <label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-      <input type="text" name = "password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="text" name = "password" id="password" class="fadeIn third"  placeholder="password">
       <div >
+      <input type="hidden" name = "usertype" id="type" class="fadeIn third" value="<?php echo($_GET["type"]) ?>"   >
       <input type="submit" id="logInButton" class=" fadeIn fourth " value="Log In" >
 
 </div>

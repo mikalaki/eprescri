@@ -1,4 +1,3 @@
-<!-- php for load the available medicines -->
 <?php
 // Get a connection for the database
 require_once('../mysqli_connection.php');

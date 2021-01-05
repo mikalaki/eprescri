@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+?>
 <html lang="en">
 
 <head>
@@ -41,7 +44,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <?php include('page_header.php'); ?>
+  <?php include('header_region.php'); ?>
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -73,7 +76,7 @@
               <div class="carousel-content slide-text">
                 <h2 class="animate__animated animate__fadeInDown slide-h2">Doctor's Application</h2>
                 <p class="animate__animated animate__fadeInUp">You can log in to eprescri platform's doctor's application, where you can manage your patient's prescriptions and view their medical history.</p>
-                <a href="#about" class=" rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Doctor</a>
+                <a href="login.php?type=doctor" class=" rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Doctor</a>
               </div>
             </div>
           </div>
@@ -85,7 +88,7 @@
               <div class="carousel-content slide-text">
                 <h2 class="animate__animated animate__fadeInDown slide-h2">Pharmacy's Application</h2>
                 <p class="animate__animated animate__fadeInUp">You can log in to eprescri as a pharmacy user to see your patients' prescription and reify them.</p>
-                <a href="#about" class="rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Pharmacy</a>
+                <a href="login.php?type=pharmacy" class="rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Pharmacy</a>
               </div>
             </div>
           </div>
@@ -97,7 +100,7 @@
               <div class="carousel-content slide-text">
                 <h2 class="animate__animated animate__fadeInDown slide-h2">Patient's Application</h2>
                 <p class="animate__animated animate__fadeInUp">You can log in to eprescri as a patient and see your existing prescriptions.</p>
-                <a href="#about" class="rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Patient</a>
+                <a href="login.php?type=patient" class="rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Patient</a>
               </div>
             </div>
           </div>
@@ -109,7 +112,7 @@
               <div class="carousel-content slide-text">
                 <h2 class="animate__animated animate__fadeInDown slide-h2">Medinice Company's Application</h2>
                 <p class="animate__animated animate__fadeInUp">You can log in to eprescri as a medicine company and manage your company's profile or manage your company's medicines.</p>
-                <a href="#about" class="rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Company</a>
+                <a href="login.php?type=company" class="rounded-pill btn-get-started scrollto animate__animated animate__fadeInUp">Log in as Company</a>
               </div>
             </div>
           </div>
