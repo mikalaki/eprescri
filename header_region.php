@@ -57,7 +57,7 @@
           require("login_menu.php");
         }
         else{
-          echo "<li ><a href=\"../index.php#log-in\">Log out</a>";
+          echo "<li ><a href=\"logout.php\">Log out</a>";
         }
         ?>
 
