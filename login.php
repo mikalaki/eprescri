@@ -103,7 +103,7 @@ if( !isset($_GET["type"]) ){
       <label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-      <input type="text" name = "password" id="password" class="fadeIn third"  placeholder="password">
+      <input type="password" name = "password" id="password" class="fadeIn third"  placeholder="password">
       <div >
       <input type="hidden" name = "usertype" id="type" class="fadeIn third" value="<?php echo($_GET["type"]) ?>"   >
       <input type="submit" id="logInButton" class=" fadeIn fourth " value="Log In" >
