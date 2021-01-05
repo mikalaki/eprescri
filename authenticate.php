@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // Change this to your connection info.
 require_once("mysqli_connection.php");
 // We have to take the form we were redirected from and :
@@ -53,18 +54,19 @@ if ($_POST['password'] === $password) {
   $_SESSION['name'] = $_POST['username'];
   $_SESSION['id'] = $id;
   $_SESSION['usertype'] = $_POST["usertype"];
-  echo 'Welcome ' . $_SESSION['name'] . '!';
+  echo "<section ><h3>Welcome ".$_SESSION['name']."!</h3></section >";
+
   // echo '<h1>'.$_POST["usertype"].'</h1>' ; //this was test
   header( "refresh:3;url=".$_SESSION['usertype'] );
 
 } else {
   // Incorrect password
-  echo 'Incorrect username and/or password!';
+  echo "<section ><h3>Incorrect username and/or password!</h3></section >";
   header( "refresh:3;url=login.php?type=".$_POST["usertype"]."" );
 }
 } else {
 // Incorrect username
-echo 'Incorrect username and/or password!';
+  echo "<section ><h3>Incorrect username and/or password!</h3></section >";
   header( "refresh:3;url=login.php?type=".$_POST["usertype"]."" );
 }
 $stmt->close();

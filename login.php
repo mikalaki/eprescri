@@ -41,10 +41,13 @@ session_start();
 </head>
 
 <?php
+
 // If the user is not logged in redirect to the login page...
 if (isset($_SESSION['loggedin'])) {
   echo "<section ><h3>Already Logged-in as a ".$_SESSION['usertype']."!</h3></section >";
+  header( "refresh:3;url=".$_SESSION['usertype'] );
   exit;
+
 }
 
 // Default login.php for people trying to access it by writing the name of the file is pateint.
