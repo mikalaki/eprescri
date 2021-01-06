@@ -15,7 +15,6 @@ WHERE username = '{$_SESSION['name']}'";
 
 $response = $conn->query($query_1);
 
-
 if($response){
 while($row = mysqli_fetch_array($response)){
 $id_key =   $row['id'];
@@ -44,8 +43,8 @@ if($response){
 echo '<table class="table table-striped">
 
 <tr>
-<th scope="col"><b>Company\'s name</b></th>
-<th scope="col"><b>Medicine\'s serial code</b></th>
+
+<th scope="col"><b>Serial code</b></th>
 <!-- <th scope="col"><b>Company\'s ID</b></th> -->
 <th scope="col"><b>Medicine\'s name</b></th>
 
@@ -63,7 +62,6 @@ $prev_medcode = 0;
 $prev_compID = 0;
 while($row = mysqli_fetch_array($response)){
 echo '<tr><td>' .
-$row['compname'] . '</td><td>' .
 $row['medcode'] . '</td><td>' .
 // $row['compID'] . '</td><td align="left">' .
 $row['medname'] . '</td><td>' .
