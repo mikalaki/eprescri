@@ -62,3 +62,12 @@ section.about{
   width :25%;
   text-align: center;
 }
+
+.prescription_buttons_td{
+  display: flex;
+
+}
+.prescription_buttons_td button{
+  margin-right: 0.2rem;
+
+}

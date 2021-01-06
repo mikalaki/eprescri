@@ -10,7 +10,7 @@ if ($conn) {
 
 // Create a query for the database
 $query = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
-company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance)AS 'substances',
+company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance) AS 'substances',
 medicine.price
 FROM medicine
 JOIN company ON medicine.companyID = company.companyID
