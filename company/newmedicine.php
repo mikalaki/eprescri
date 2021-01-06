@@ -61,11 +61,11 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Add , Remove , Update Medicine </h2>
+        <h2>Add Medicines </h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
           <li><a href="available_meds.php">Company</a></li>
-          <li>Add , Remove , Update Medicine</li>
+          <li>Add Medicines </li>
         </ol>
       </div>
 
@@ -84,7 +84,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
-            <a href="newmedicine.php"><li class="list-group-item">Add , Remove , Update Medicines </li></a>
+            <a href="newmedicine.php"><li class="list-group-item">Add Medicines </li></a>
           </ul>
         </div>
 
@@ -97,22 +97,22 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
             </button>
           </div>
 
-          <form>
+          <form name="form" action="medicine_add.php" method="post" >
+
             <div class="form-group">
               <label for="patientSSN">Category</label>
-              <input type="text" class="form-control" id="medicineCategory" aria-describedby="patientSSNformHelp" placeholder="e.g. Antibiotcs">
+              <input type="text"  class="form-control" name='medCat' id="medicineCategory" aria-describedby="patientSSNformHelp" placeholder="e.g. Antibiotcs" required>
             </div>
 
             <div  class="form-group">
               <label for="medicines">Name</label>
-              <input type="text" class="form-control" id="medicineName" placeholder=" e.g. Cipro">
-              <ul id="ulMedicinesDoctor">
+              <input type="text" class="form-control" name='medNam'  id="medicineName" placeholder=" e.g. Cipro" required>
               </ul>
             </div>
 
             <div  class="form-group">
               <label for="medicines">Price</label>
-              <input type="text" class="form-control" id="medicineName" placeholder="e.g. 15€ ">
+              <input type="text" class="form-control" name='medPr' id="medicinePrice" placeholder="e.g. 15€ " required>
               <ul id="medicinePrice">
               </ul>
             </div>
@@ -120,56 +120,31 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
 
             <div class="form-group">
               <label for="prescriptionInstructions">Contradctions</label>
-              <textarea class="form-control" id="medicineContradictions" placeholder="Write the contradictions of the medicine "></textarea>
+              <textarea class="form-control" name="medContr" id="medicineContradictions" placeholder="Write the contradictions of the medicine "></textarea required>
             </div>
 
             <div  class="form-group">
               <label for="medicines">Milligrams</label>
-              <input type="text" class="form-control" id="medicineName" placeholder=" e.g. 500mg">
-              <ul id="ulMedicinesDoctor">
+              <input type="text" class="form-control" name="medMg" id="medicineMg" placeholder=" e.g. 500mg" required>
               </ul>
             </div>
 
             <div class="form-group">
               <label for="prescriptionInstructions">Description</label>
-              <textarea class="form-control" id="medicineDescription" placeholder="Write the description for the medicine "></textarea>
+              <textarea class="form-control" name="medDesc"  id="medicineDescription" placeholder="Write the description for the medicine "></textarea required>
             </div>
 
-
-
-            <!-- <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> -->
-
+<!-- Adding php code to post to the database -->
           <div class="container">
   <div class="row">
     <div class="col-sm">
-    <button id="addPrescription" type="submit" class="btn btn-primary">Add Prescription</button>
-    </div>
-    <div class="col-sm">
-<button id="addMedicineDoctor" type="submit" class="btn btn-primary">Add Medicine</button>
-    </div>
-    <div class="col-sm">
-      <button id="deleteMedicineDoctor" type="submit" class="btn btn-primary">Delete Medicine</button>
+<input  name='subBut' type="submit" class="btn btn-primary" value="Add">
     </div>
   </div>
 </div>
           </form>
         </div>
 
-
-        <!-- <div class="col-md-6 d-flex align-items-stretch">
-          <div class="card">
-            <div class="card-img">
-              <img src="assets/img/events-2.jpg" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">James 6th Birthday</h5>
-              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
-            </div>
-          </div> -->
 
         </div>
       </div>
