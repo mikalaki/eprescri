@@ -71,7 +71,7 @@
          $reify_status = "Reified on: " .$row["reifyDate"];
        }
        else {
-         $reify_status= "REIFY HERE";
+         $reify_status= "Not Reified";
        }
        echo "<tr><td>"
        . $row["fromDate"]."</td><td>"
