@@ -108,19 +108,38 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
             echo "Problem Connecting to database";
           }
 
+          echo $_SESSION['name'];
+
+
+          // Query to get the keys from the users table
+          $query_1 = "SELECT user_company.id
+          FROM user_company
+          WHERE username = '{$_SESSION['name']}'";
+
+          $response = $conn->query($query_1);
+
+
+          if($response){
+          while($row = mysqli_fetch_array($response)){
+          $id_key =   $row['id'];
+            }
+          }
+
           // Create a query for the database
-          $query = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
+          $query_2 = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
           company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance)AS 'substances',
           medicine.price
           FROM medicine
           JOIN company ON medicine.companyID = company.companyID
           JOIN medicine_substances ON (medicine_substances.code=medicine.code AND medicine_substances.companyID = medicine.companyID)
+          WHERE company.companyID = '{$id_key}'
           GROUP BY medcode,compID
-          ORDER BY medcode,compID";
+          ORDER BY medcode,compID
+          ";
 
           // Get a response from the database by sending the connection
           // and the query
-          $response = $conn->query($query);
+          $response = $conn->query($query_2);
 
           // If the query executed properly proceed
           if($response){
@@ -194,7 +213,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
               <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
             </div>
           </div> -->
-
+ngfhfgmjhgh
         </div>
       </div>
 

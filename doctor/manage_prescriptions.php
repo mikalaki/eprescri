@@ -16,11 +16,11 @@ $id_key =   $row['id'];
   }
 }
 
+$query_2 = " SELECT  prescri.prescriptionID , prescri.patientSSN , p.first_name , p.last_name , prescri.fromDate , prescri.toDate
+FROM  prescription prescri
+JOIN patient p on p.SSN = prescri.PatientSSN
+WHERE  prescri.doctorID =  '{$id_key}' ";
 
-$query_2 = "SELECT  d_watches.PatientSSN , p.first_name , p.last_name , d_watches.fromDate , d_watches.toDate
-FROM doctor_watches_patient d_watches
-JOIN patient p on p.SSN = d_watches.PatientSSN
-WHERE  d_watches.doctorID = '{$id_key}' ";
 
 
 $response_2 = $conn->query($query_2);
@@ -28,14 +28,14 @@ $response_2 = $conn->query($query_2);
 if($response_2){
 if (mysqli_num_rows($response_2)==0 )
 {
-  echo "You do not watch any patient yet.";
+  echo "You have no prescriptions yet.";
   $conn->close();
 }
 else
   {
-    // TO ADD THE HTML TABLE FORMAT
+    // TO ADD THE HTML TABLE FORMAT concat the first_name + last_name for the full name etc
   while($row = mysqli_fetch_array($response_2)){
-   echo $row[0] . " " . $row[1] . " " . $row[2] . " " . $row[3] . "  ".  $row[4] . "<br>  <br>";
+   echo $row[0] . " " . $row[1] . " " . $row[2] . " " . $row[3] . "  ".  $row[4] . $row[5] . "<br>  <br>";
   }
  }
 }

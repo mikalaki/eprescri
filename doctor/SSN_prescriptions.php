@@ -1,10 +1,5 @@
 <?php
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
-  require("please_login.php");
-}
-?>
-<?php
+
   require_once('../mysqli_connection.php');
 
   if(!isset($_GET['searchInputPatient'])){
@@ -56,7 +51,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
       while ($row = mysqli_fetch_array($prescriptionIDs)) {
           $arr[] = $row["prescriptionID"];
       }
-    $presctiptionIDString=strval($arr[$pageno-1]);
+      $presctiptionIDString=strval($arr[$pageno-1]);
       $total_pages=count($arr);
 
       $sql = "SELECT p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate

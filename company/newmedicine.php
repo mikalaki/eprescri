@@ -64,7 +64,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <h2>Add , Remove , Update Medicine </h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Company</a></li>
+          <li><a href="available_meds.php">Company</a></li>
           <li>Add , Remove , Update Medicine</li>
         </ol>
       </div>

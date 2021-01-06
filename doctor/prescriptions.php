@@ -102,7 +102,9 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
             </button>
           </div>
 
-          <table class="table table-striped">
+          <?php require_once('manage_prescriptions.php'); ?>
+
+          <!-- <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Prescription ID</th>
@@ -139,7 +141,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
                 <td><button type="button" class="btn btn-primary">Watch</button></td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
 
 
