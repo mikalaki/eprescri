@@ -77,6 +77,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
             Enter the SSN of a patient in order to see his medical prescriptions Record.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <form>
             <div class="form-row">

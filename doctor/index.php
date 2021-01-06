@@ -107,6 +107,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
             </button>
           </div>
 
+
           <table class="table table-striped">
             <thead>
               <tr>
@@ -116,39 +117,47 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
                 <th scope="col">Last Name</th>
                 <th scope="col">Patient From</th>
                 <th scope="col">Last Visit</th>
-                <th scope="col">Watch Record</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Record</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-
-                <td>12345678911</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>01/01/2021</td>
-                <td>01/01/2021</td>
-                <td><button type="button" class="btn btn-primary">Watch</button></td>
-              </tr>
-              <tr>
-
-                <td>12345678911</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>01/01/2021</td>
-                <td>01/01/2021</td>
-                <td><button type="button" class="btn btn-primary">Watch</button></td>
-              </tr>
-              <tr>
-
-                <td>12345678911</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>01/01/2021</td>
-                <td>01/01/2021</td>
-                <td><button type="button" class="btn btn-primary">Watch</button></td>
-              </tr>
+              <?php require_once("doctor_patients_lists.php"); ?>
             </tbody>
           </table>
+
+          <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+          <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
+          </div>
+          <nav>
+            <ul class="pagination">
+              <?php if($page_no > 1){
+              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=1'>First Page</a></li>";
+              } ?>
+
+              <li class="page-item" <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
+              <a class="page-link" <?php if($page_no > 1){
+              echo "href='?page_no=$previous_page'";
+              } ?>>Previous</a>
+              </li>
+
+              <li class="page-item"  <?php if($page_no >= $total_no_of_pages){
+              echo "class='disabled'";
+              } ?>>
+              <a class="page-link" <?php if($page_no < $total_no_of_pages) {
+              echo "href='?page_no=$next_page'";
+              } ?>>Next</a>
+              </li>
+
+              <?php if($page_no < $total_no_of_pages){
+              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+              }
+
+              ?>
+            </ul>
+          </nav>
+
+
 
         </div>
 

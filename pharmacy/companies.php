@@ -78,6 +78,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
             Medicine Producers
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
 
 
@@ -128,16 +131,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
 
            </table>
 
-<ul class="pagination">
-    <li id="firstButtonPharmacy"><a href="?pageno=1">First</a></li>
-    <li id="nextButtonPharmacy" class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-        <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-    </li>
-    <li id="prevButtonPharmacy" class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-        <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-    </li>
-    <li id="lastButtonPharmacy"><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-</ul>
+           <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+           <strong>Page <?php echo $pageno." of ".$total_pages; ?></strong>
+           </div>
+            <ul class="pagination">
+                <li class="page-item" id="firstButtonPharmacy"><a class="page-link" href="?pageno=1">First</a></li>
+                <li class="page-item" id="nextButtonPharmacy" class=" class="page-link" <?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                    <a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+                </li>
+                <li class="page-item" id="prevButtonPharmacy" class=" class="page-link" <?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                    <a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+                </li>
+                <li class="page-item" id="lastButtonPharmacy"><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+            </ul>
+            <ul class="pagination">
 
           <!-- HERE WILL LOAD THE patient_prescription_table.php -->
         </div>

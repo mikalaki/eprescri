@@ -25,52 +25,46 @@ $response = $conn->query($query);
 // If the query executed properly proceed
 if($response){
 
-echo '<table class="table table-striped">
+  echo '<table class="table table-striped">
 
-<tr>
-<th scope="col"><b>Company\'s name</b></th>
-<th scope="col"><b>Medicine\'s serial code</b></th>
-<!-- <th scope="col"><b>Company\'s ID</b></th> -->
-<th scope="col"><b>Medicine\'s name</b></th>
+  <tr>
+  <th scope="col"><b>Company\'s name</b></th>
+  <th scope="col"><b>Medicine\'s serial code</b></th>
+  <!-- <th scope="col"><b>Company\'s ID</b></th> -->
+  <th scope="col"><b>Medicine\'s name</b></th>
 
-<th scope="col"><b>Category</b></th>
-<th scope="col"><b>Milligrams</b></th>
-<th scope="col"><b>Substances</b></th>
-<th scope="col"><b>Price</b></th>
-</tr>';
-
-
-
-// mysqli_fetch_array will return a row of data from the query
-// until no further data is available
-$prev_medcode = 0;
-$prev_compID = 0;
-while($row = mysqli_fetch_array($response)){
-echo '<tr><td>' .
-$row['compname'] . '</td><td>' .
-$row['medcode'] . '</td><td>' .
-// $row['compID'] . '</td><td align="left">' .
-$row['medname'] . '</td><td>' .
-$row['category'] . '</td><td>' .
-$row['milligrams'] . '</td><td>' .
-//Printing multiple subastances of a medicine properly.
-str_replace (",","<br>",$row['substances']) . '</td><td>' .
-$row['price'] . '</td>';
-echo '</tr>';
-
-$prev_medcode = $row['medcode'];
-$prev_compID  = $row['compID'];
+  <th scope="col"><b>Category</b></th>
+  <th scope="col"><b>Milligrams</b></th>
+  <th scope="col"><b>Substances</b></th>
+  <th scope="col"><b>Price</b></th>
+  </tr>';
 
 
-}
 
-echo '</table>';
+  // mysqli_fetch_array will return a row of data from the query
+  // until no further data is available
+  while($row = mysqli_fetch_array($response)){
+    echo '<tr><td>' .
+    $row['compname'] . '</td><td>' .
+    $row['medcode'] . '</td><td>' .
+    // $row['compID'] . '</td><td align="left">' .
+    $row['medname'] . '</td><td>' .
+    $row['category'] . '</td><td>' .
+    $row['milligrams'] . '</td><td>' .
+    //Printing multiple subastances of a medicine properly.
+    str_replace (",","<br>",$row['substances']) . '</td><td>' .
+    $row['price'] . '</td>';
+    echo '</tr>';
+
+  }
+
+  echo '</table>';
 
 } else {
 
-echo "Couldn't issue database query<br />";
+  echo "Couldn't issue database query<br />";
 
-echo mysqli_error($conn);
+  echo mysqli_error($conn);
 
 }
 

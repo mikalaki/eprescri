@@ -105,104 +105,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
             </button>
           </div>
 
-          <!-- php for load the available medicines -->
-          <?php
-          // Get a connection for the database
-          require_once('../mysqli_connection.php');
-
-          if ($conn) {
-            // echo "connected <br>";
-          } else {
-            echo "Problem Connecting to database";
-          }
-
-          // Create a query for the database
-          $query = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
-          company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance)AS 'substances',
-          medicine.price
-          FROM medicine
-          JOIN company ON medicine.companyID = company.companyID
-          JOIN medicine_substances ON (medicine_substances.code=medicine.code AND medicine_substances.companyID = medicine.companyID)
-          GROUP BY medcode,compID
-          ORDER BY medcode,compID";
-
-          // Get a response from the database by sending the connection
-          // and the query
-          $response = $conn->query($query);
-
-          // If the query executed properly proceed
-          if($response){
-
-          echo '<table class="table table-striped">
-
-          <tr>
-          <th scope="col"><b>Company\'s name</b></th>
-          <th scope="col"><b>Medicine\'s serial code</b></th>
-          <!-- <th scope="col"><b>Company\'s ID</b></th> -->
-          <th scope="col"><b>Medicine\'s name</b></th>
-
-          <th scope="col"><b>Category</b></th>
-          <th scope="col"><b>Milligrams</b></th>
-          <th scope="col"><b>Substances</b></th>
-          <th scope="col"><b>Price</b></th>
-          </tr>';
-
-
-
-          // mysqli_fetch_array will return a row of data from the query
-          // until no further data is available
-          $prev_medcode = 0;
-          $prev_compID = 0;
-          while($row = mysqli_fetch_array($response)){
-          echo '<tr><td>' .
-          $row['compname'] . '</td><td>' .
-          $row['medcode'] . '</td><td>' .
-          // $row['compID'] . '</td><td align="left">' .
-          $row['medname'] . '</td><td>' .
-          $row['category'] . '</td><td>' .
-          $row['milligrams'] . '</td><td>' .
-          //Printing multiple subastances of a medicine properly.
-          str_replace (",","<br>",$row['substances']) . '</td><td>' .
-          $row['price'] . '</td>';
-          echo '</tr>';
-
-          $prev_medcode = $row['medcode'];
-          $prev_compID  = $row['compID'];
-
-
-          }
-
-          echo '</table>';
-
-          } else {
-
-          echo "Couldn't issue database query<br />";
-
-          echo mysqli_error($conn);
-
-          }
-
-          // Close connection to the database
-          mysqli_close($conn);
-
-          ?>
+          <?php require_once("available_medicines_table.php"); ?>
 
 
         </div>
-
-
-        <!-- <div class="col-md-6 d-flex align-items-stretch">
-          <div class="card">
-            <div class="card-img">
-              <img src="assets/img/events-2.jpg" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">James 6th Birthday</h5>
-              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
-            </div>
-          </div> -->
-
         </div>
       </div>
 
@@ -217,13 +123,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
     <div class="container">
       <h3>eprescri</h3>
       <p>Electronic prescription platform for a more direct and complete medical prescription process!</p>
-      <!-- <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div> -->
       <div class="copyright">
         Website developed from Michael Karatzas, Apostolos Moustaklis and Kyriakos Marantidis. Front end based on the theme:
       </div>
