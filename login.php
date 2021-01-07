@@ -32,6 +32,10 @@ session_start();
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/custom.css" rel="stylesheet">
   <link href="assets/css/loginForm.css" rel="stylesheet">
+
+  <!-- Load fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
   <!-- =======================================================
   * Template Name: MeFamily - v2.2.0
   * Template URL: https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/
@@ -99,10 +103,10 @@ if( !isset($_GET["type"]) ){
       <label for="username">
         <i class="fas fa-user"></i>
       </label>
-      <input type="text" name="username" id="login" class="fadeIn second"  placeholder="username">
+      <input type="text" name="username" id="login" class="fadeIn second"  placeholder="username"></br>
       <label for="password">
 					<i class="fas fa-lock"></i>
-				</label>
+			</label>
       <input type="password" name = "password" id="password" class="fadeIn third"  placeholder="password">
       <div >
       <input type="hidden" name = "usertype" id="type" class="fadeIn third" value="<?php echo($_GET["type"]) ?>"   >

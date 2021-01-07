@@ -2,7 +2,7 @@
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
-?>
+ ?>
 <html lang="en">
 
 <head>
@@ -37,6 +37,7 @@ session_start();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
 
+
   <!-- =======================================================
   * Template Name: MeFamily - v2.2.0
   * Template URL: https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/
@@ -46,31 +47,36 @@ session_start();
 </head>
 <?php
 // If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
   require("please_login.php");
 }
+
 ?>
+
 <body>
 
   <!-- ======= Header ======= -->
   <?php include('header_region.php'); ?>
   <!-- End Header -->
+
+
+
+
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Available Medicines</h2>
+        <h2>My Patients</h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Company</a></li>
-          <li>Medicines</li>
+          <li><a href="#">Doctor</a></li>
+          <li>My Patients</li>
         </ol>
       </div>
 
     </div>
   </section><!-- End Breadcrumbs -->
-
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -81,24 +87,39 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <!-- Doctor's Submenu -->
         <div class="col-sm-3">
           <ul class="list-group">
-            <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
+            <li class="list-group-item list-group-item-dark "><strong><u>Doctor's menu</u></strong></li>
+            <a href="index.php"><li class="list-group-item">My Patients</li></a>
+            <a href="prescriptions.php"><li class="list-group-item">Manage Prescriptions</li></a>
+            <a href="newprescription.php"><li class="list-group-item">Add New Prescription</li></a>
+            <a href="watchapatient.php"><li class="list-group-item">Watch a Patient's Record</li></a>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
-            <a href="newmedicine.php"><li class="list-group-item">Add  Medicines </li></a>
           </ul>
-         </div>
-
-        <!-- Doctor's main Content -->
-        <div class="col-sm-9 doc-area-main">
-          <div class="alert alert-primary" role="alert">
-            Currently Available medicines.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-           <?php require_once('medicines_available.php');  ?>
-          <!-- php for load the available medicines -->
 
         </div>
+
+
+         <!-- Doctor's main Content -->
+        <div class="col-sm-9 doc-area-main">
+        <?php require_once("patient_prescriptions_table.php"); ?>
+
+
+
+
+        </div>
+
+
+        <!-- <div class="col-md-6 d-flex align-items-stretch">
+          <div class="card">
+            <div class="card-img">
+              <img src="assets/img/events-2.jpg" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">James 6th Birthday</h5>
+              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
+              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
+            </div>
+          </div> -->
+
         </div>
       </div>
 

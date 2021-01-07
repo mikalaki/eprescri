@@ -33,6 +33,10 @@ session_start();
   <link href="../assets/css/custom.css" rel="stylesheet">
   <link href="../assets/css/style.css" rel="stylesheet">
 
+  <!-- Load fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+
 
   <!-- =======================================================
   * Template Name: MeFamily - v2.2.0
@@ -96,10 +100,40 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
 
            </div>
 
-
-
            <!-- php for load the available medicines -->
               <?php require_once('medicines_available.php');  ?>
+
+
+              <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+              <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
+              </div>
+              <nav>
+                <ul class="pagination">
+                  <?php if($page_no > 1){
+                  echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=1'>First Page</a></li>";
+                  } ?>
+
+                  <li class="page-item" <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
+                  <a class="page-link" <?php if($page_no > 1){
+                  echo "href='?page_no=$previous_page'";
+                  } ?>>Previous</a>
+                  </li>
+
+                  <li class="page-item"  <?php if($page_no >= $total_no_of_pages){
+                  echo "class='disabled'";
+                  } ?>>
+                  <a class="page-link" <?php if($page_no < $total_no_of_pages) {
+                  echo "href='?page_no=$next_page'";
+                  } ?>>Next</a>
+                  </li>
+
+                  <?php if($page_no < $total_no_of_pages){
+                  echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+                  }
+
+                  ?>
+                </ul>
+              </nav>
 
          </div>
 

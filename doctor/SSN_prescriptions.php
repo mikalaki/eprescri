@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 74fea10b5db4bfd4153020eebc57acf9b249ca88
   require_once('../mysqli_connection.php');
 
   if(!isset($_GET['searchInputPatient'])){

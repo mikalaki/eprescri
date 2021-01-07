@@ -21,6 +21,9 @@ $id_key =   $row['id'];
   }
 }
 
+
+
+
 // Create a query for the database
 $query_2 = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
 company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance)AS 'substances',
@@ -37,6 +40,34 @@ ORDER BY medcode,compID
 // and the query
 $response = $conn->query($query_2);
 
+
+
+if (isset($_GET['page_no']) && $_GET['page_no']!="") {
+    $page_no = $_GET['page_no'];
+}
+else {
+    $page_no = 1;
+}
+
+// records per page
+$total_records_per_page = 5;
+
+$offset = ($page_no-1) * $total_records_per_page;
+$previous_page = $page_no - 1;
+$next_page = $page_no + 1;
+$adjacents = "2";
+
+// Get total records
+$result_count = $conn->query("SELECT count(code) as total_records
+FROM  medicine
+WHERE companyID=$id_key");
+$total_records = mysqli_fetch_array($result_count);
+$total_records = $total_records['total_records'];
+
+//get total number of pages
+$total_no_of_pages = ceil($total_records / $total_records_per_page);
+$second_last = $total_no_of_pages - 1; // total pages minus 1
+
 // If the query executed properly proceed
 if($response){
 
@@ -52,6 +83,7 @@ echo '<table class="table table-striped">
 <th scope="col"><b>Milligrams</b></th>
 <th scope="col"><b>Substances</b></th>
 <th scope="col"><b>Price</b></th>
+<th scope=\"col\">Actions</th>
 </tr>';
 
 
@@ -61,15 +93,24 @@ echo '<table class="table table-striped">
 $prev_medcode = 0;
 $prev_compID = 0;
 while($row = mysqli_fetch_array($response)){
-echo '<tr><td>' .
-$row['medcode'] . '</td><td>' .
-// $row['compID'] . '</td><td align="left">' .
-$row['medname'] . '</td><td>' .
-$row['category'] . '</td><td>' .
-$row['milligrams'] . '</td><td>' .
-//Printing multiple subastances of a medicine properly.
-str_replace (",","<br>",$row['substances']) . '</td><td>' .
-$row['price'] . '</td>';
+
+
+
+  echo "<tr>
+ <td>".$row['medcode']."</td>
+ <td>".$row['medname']."</td>
+ <td>".$row['category']."</td>
+ <td>".$row['milligrams']."</td>
+ <td>".$row['substances']."</td>
+  <td>".$row['price']."</td>
+ <td class=\"prescription_buttons_td\">
+ <button type=\"button\" class=\"btn btn-secondary btn-sm\"><i class=\"far fa-edit\"></i></button>
+ <a href=deletemedicinedialog.php?ID=".$row['medcode']." <button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>
+ </td>
+ </tr>";
+
+
+
 echo '</tr>';
 
 $prev_medcode = $row['medcode'];

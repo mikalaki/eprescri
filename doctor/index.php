@@ -33,6 +33,10 @@ session_start();
   <link href="../assets/css/custom.css" rel="stylesheet">
   <link href="../assets/css/style.css" rel="stylesheet">
 
+  <!-- Load fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+
 
   <!-- =======================================================
   * Template Name: MeFamily - v2.2.0
@@ -102,6 +106,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+<<<<<<< HEAD
             <?php require_once('doctor_patients.php'); ?>
 
           <!--
@@ -147,6 +152,60 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
                         </tr>
                       </tbody>
                     </table> -->
+=======
+
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+
+                <th scope="col">SSN</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Patient From</th>
+                <th scope="col">Last Visit</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Record</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php require_once("doctor_patients_lists.php"); ?>
+            </tbody>
+          </table>
+
+          <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+          <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
+          </div>
+          <nav>
+            <ul class="pagination">
+              <?php if($page_no > 1){
+              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=1'>First Page</a></li>";
+              } ?>
+
+              <li class="page-item" <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
+              <a class="page-link" <?php if($page_no > 1){
+              echo "href='?page_no=$previous_page'";
+              } ?>>Previous</a>
+              </li>
+
+              <li class="page-item"  <?php if($page_no >= $total_no_of_pages){
+              echo "class='disabled'";
+              } ?>>
+              <a class="page-link" <?php if($page_no < $total_no_of_pages) {
+              echo "href='?page_no=$next_page'";
+              } ?>>Next</a>
+              </li>
+
+              <?php if($page_no < $total_no_of_pages){
+              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+              }
+
+              ?>
+            </ul>
+          </nav>
+
+
+>>>>>>> 74fea10b5db4bfd4153020eebc57acf9b249ca88
 
         </div>
 
