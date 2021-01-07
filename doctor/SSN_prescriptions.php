@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+
+=======
+>>>>>>> 74fea10b5db4bfd4153020eebc57acf9b249ca88
   require_once('../mysqli_connection.php');
 
   if(!isset($_GET['searchInputPatient'])){
@@ -41,6 +45,15 @@
               <th scope="col"> Quantity </th>
               <th scope="col"> Reified</th>
               </tr>';
+<<<<<<< HEAD
+=======
+      $arr = array();
+      while ($row = mysqli_fetch_array($prescriptionIDs)) {
+          $arr[] = $row["prescriptionID"];
+      }
+      $presctiptionIDString=strval($arr[$pageno-1]);
+      $total_pages=count($arr);
+>>>>>>> b91c6ab3aa5a6666d82dab9d2d61df58cd6382e0
 
       $sql = "SELECT p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate,quantity
       FROM prescription p

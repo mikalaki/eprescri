@@ -1,6 +1,6 @@
 <?php
   require_once('../mysqli_connection.php');
-
+echo session_id();
   if(!isset($_GET['searchInputPatient'])){
 
   }
@@ -53,7 +53,7 @@
     $presctiptionIDString=strval($arr[$pageno-1]);
       $total_pages=count($arr);
 
-      $sql = "SELECT p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate
+      $sql = "SELECT p.prescriptionID,p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate
       FROM prescription p
       JOIN prescription_consistsof_medicine pcm ON (p.prescriptionID=pcm.prescriptionID)
       JOIN medicine m ON (pcm.medicineCode=m.code AND m.companyID=pcm.companyID)
@@ -62,29 +62,42 @@
       GROUP BY p.prescriptionID
       ORDER BY reifyDate;";
       $result = $conn->query($sql);
-
       if ($result->num_rows > 0) {
       // output data of each row
       while($row = mysqli_fetch_array($result)) {
        if(!is_null($row["reifyDate"])){
          $reify_status = "Reified on: " .$row["reifyDate"];
+         echo "<tr><td>"
+         . $row["fromDate"]."</td><td>"
+         . $row["toDate"].  "</td><td>"
+         . $row["instructions"].  "</td><td>"
+          .str_replace (",","<br>",$row["medicineName"]).  "</td><td>"
+          .str_replace (",","<br>",$row["companyName"]). "</td><td>"
+           . $reify_status.  "</td>"
+           . "</tr>";
        }
        else {
+
          $reify_status= "REIFY HERE";
+         echo "<tr><td>"
+         . $row["fromDate"]."</td><td>"
+         . $row["toDate"].  "</td><td>"
+         . $row["instructions"].  "</td><td>"
+          .str_replace (",","<br>",$row["medicineName"]).  "</td><td>"
+          .str_replace (",","<br>",$row["companyName"]). "</td ><td>
+          <button id=\"" .$row["prescriptionID"] . "\"
+          class=\"btn btn-primary reifybuttons\" type=\"button\" >"
+           . $reify_status. "</button>" . "</td>"
+           . "</tr>";
        }
-       echo "<tr><td>"
-       . $row["fromDate"]."</td><td>"
-       . $row["toDate"].  "</td><td>"
-       . $row["instructions"].  "</td><td>"
-        .str_replace (",","<br>",$row["medicineName"]).  "</td><td>"
-        .str_replace (",","<br>",$row["companyName"]). "</td><td>"
-         . $reify_status.  "</td>"
-         . "</tr>";
+
       }
       echo "</table>";
+
       } else {
       echo "0 results";
       }
+
       $conn->close();
   }
   }
