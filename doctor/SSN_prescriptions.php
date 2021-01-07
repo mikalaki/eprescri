@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+
+=======
+>>>>>>> 74fea10b5db4bfd4153020eebc57acf9b249ca88
   require_once('../mysqli_connection.php');
 
   if(!isset($_GET['searchInputPatient'])){
@@ -50,7 +54,7 @@
       while ($row = mysqli_fetch_array($prescriptionIDs)) {
           $arr[] = $row["prescriptionID"];
       }
-    $presctiptionIDString=strval($arr[$pageno-1]);
+      $presctiptionIDString=strval($arr[$pageno-1]);
       $total_pages=count($arr);
 
       $sql = "SELECT p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate
@@ -70,7 +74,7 @@
          $reify_status = "Reified on: " .$row["reifyDate"];
        }
        else {
-         $reify_status= "REIFY HERE";
+         $reify_status= "Not Reified";
        }
        echo "<tr><td>"
        . $row["fromDate"]."</td><td>"

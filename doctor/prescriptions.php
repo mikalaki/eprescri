@@ -139,6 +139,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
               ?>
             </ul>
           </nav>
+
         </div>
 
 

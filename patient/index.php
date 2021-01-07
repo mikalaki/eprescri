@@ -90,6 +90,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='patient') {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+
+
+        //   <?php require_once('patients_prescription.php'); ?>
           </div>
 
           <table class="table table-striped">

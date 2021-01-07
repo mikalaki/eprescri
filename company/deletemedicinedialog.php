@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 ?>
 <html lang="en">
 
@@ -37,6 +39,7 @@ session_start();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
 
+
   <!-- =======================================================
   * Template Name: MeFamily - v2.2.0
   * Template URL: https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/
@@ -45,16 +48,44 @@ session_start();
   ======================================================== -->
 </head>
 <?php
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
-  require("please_login.php");
-}
+  // If the user is not logged in redirect to the login page...
+  if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
+    require("please_login.php");
+  }
+
+  //Check IF the doctor wants to delete the prescription is the doctor wrote the prescription.
+  $medicineCode = $_GET['ID'];
+
+  require_once('../mysqli_connection.php');
+
+  $checkQuery = "SELECT companyID FROM medicine WHERE code = $medicineCode";
+
+  $companyID = $conn->query($checkQuery);
+
+  $row = mysqli_fetch_array($companyID);
+
+  if($row['companyID'] !=  $_SESSION['id']){
+    echo "<div class=\"container alert alert-danger\" role=\"alert\">
+            <h4><i class=\"fas fa-exclamation-triangle\"></i> PERMISSION DENIED! TRIED TO DELETE ANOTHER DOCTOR'S PRESCRIPTION!!!</h4>
+          </div>";
+
+    header( "refresh:3;url=prescriptions.php" );
+    exit;
+  }
+
+
+
+
 ?>
+
 <body>
 
   <!-- ======= Header ======= -->
   <?php include('header_region.php'); ?>
   <!-- End Header -->
+
+
+
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
@@ -67,10 +98,8 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
           <li>Medicines</li>
         </ol>
       </div>
-
     </div>
   </section><!-- End Breadcrumbs -->
-
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -84,52 +113,40 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
             <a href="newmedicine.php"><li class="list-group-item">Add  Medicines </li></a>
+
           </ul>
-         </div>
+        </div>
 
-        <!-- Doctor's main Content -->
+         <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
-          <div class="alert alert-primary" role="alert">
-            Currently Available medicines.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+          <div class="alert alert-danger" role="alert">
+            <h4><i class="fas fa-exclamation-triangle"></i> Are you sure you want to delete the medicine with code = <?php echo $_GET['ID'];?>? </h4>
           </div>
-           <?php require_once('medicines_available.php');  ?>
-          <!-- php for load the available medicines -->
 
-          <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
-          <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
-          </div>
-          <nav>
-            <ul class="pagination">
-              <?php if($page_no > 1){
-              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=1'>First Page</a></li>";
-              } ?>
+            <a href="deletemedicine.php?ID=<?php echo $_GET['ID'];?>" ><button type="button" class="btn btn-outline-danger">Yes, delete it!</button></a>
+            <a href="index.php"><button type="button" class="btn btn-outline-dark">No, go back.</button></a>
 
-              <li class="page-item" <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
-              <a class="page-link" <?php if($page_no > 1){
-              echo "href='?page_no=$previous_page'";
-              } ?>>Previous</a>
-              </li>
+          <?php
 
-              <li class="page-item"  <?php if($page_no >= $total_no_of_pages){
-              echo "class='disabled'";
-              } ?>>
-              <a class="page-link" <?php if($page_no < $total_no_of_pages) {
-              echo "href='?page_no=$next_page'";
-              } ?>>Next</a>
-              </li>
 
-              <?php if($page_no < $total_no_of_pages){
-              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
-              }
+          ?>
 
-              ?>
-            </ul>
-          </nav>
 
         </div>
+
+
+        <!-- <div class="col-md-6 d-flex align-items-stretch">
+          <div class="card">
+            <div class="card-img">
+              <img src="assets/img/events-2.jpg" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">James 6th Birthday</h5>
+              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
+              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
+            </div>
+          </div> -->
+
         </div>
       </div>
 

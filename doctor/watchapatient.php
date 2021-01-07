@@ -108,17 +108,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
             <div class="form-row">
               <div class="form-group col-md">
                 <label for="SearchpatientSSN">Patient's SSN</label>
-                <input type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
+                <input name = "searchInputPatient" type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
               </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Search</button>
+
           </form>
-
-
+          <?php require_once('SSN_prescriptions.php'); ?>
           <!-- HERE WILL LOAD THE patient_prescription_table.php -->
-
-
 
         </div>
 
