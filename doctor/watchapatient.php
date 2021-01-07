@@ -95,7 +95,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
           </ul>
         </div>
 
-        <!-- Doctor's main Content -->
+        <!-- Pharmacy's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
             Enter the SSN of a patient in order to see his medical prescriptions Record.
@@ -103,25 +103,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
           <form>
             <div class="form-row">
               <div class="form-group col-md">
                 <label for="SearchpatientSSN">Patient's SSN</label>
-                <input type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
+                <input name="searchInputPatient" type="text" class="form-control" id="SearchpatientSSN"  placeholder="e.g. 01019012345">
               </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Search</button>
+
           </form>
 
 
+          <?php require_once('SSN_prescriptions.php'); ?>
           <!-- HERE WILL LOAD THE patient_prescription_table.php -->
-
-
-
         </div>
-
 
         <!-- <div class="col-md-6 d-flex align-items-stretch">
           <div class="card">

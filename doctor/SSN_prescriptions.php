@@ -12,12 +12,6 @@
 
     $patientSSN=$_GET['searchInputPatient'];
 
-  if (isset($_GET['pageno'])) {
-      $pageno = $_GET['pageno'];
-  } else {
-      $pageno = 1;
-  }
-
 
   $sql1="SELECT prescriptionID FROM prescription WHERE patientSSN= $patientSSN " ;
   $prescriptionIDs= $conn->query($sql1);
@@ -37,40 +31,35 @@
   }
   else
     {
-      echo '<table class="table table-striped">
+      echo '</br><table class="table table-striped">
               <tr>
               <th scope="col"> From </th>
               <th scope="col"> To </th>
               <th scope="col"> Instructions </th>
               <th scope="col"> Medicines </th>
               <th scope="col"> Company </th>
-              <th scope="col"> Reified Status </th>
+              <th scope="col"> Quantity </th>
+              <th scope="col"> Reified</th>
               </tr>';
-      $arr = array();
-      while ($row = mysqli_fetch_array($prescriptionIDs)) {
-          $arr[] = $row["prescriptionID"];
-      }
-    $presctiptionIDString=strval($arr[$pageno-1]);
-      $total_pages=count($arr);
 
-      $sql = "SELECT p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate
+      $sql = "SELECT p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate,quantity
       FROM prescription p
       JOIN prescription_consistsof_medicine pcm ON (p.prescriptionID=pcm.prescriptionID)
       JOIN medicine m ON (pcm.medicineCode=m.code AND m.companyID=pcm.companyID)
       JOIN  company c ON (m.companyID=c.companyID)
       WHERE p.patientSSN =$patientSSN
       GROUP BY p.prescriptionID
-      ORDER BY reifyDate;";
+      ORDER BY fromDate;";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
       // output data of each row
       while($row = mysqli_fetch_array($result)) {
        if(!is_null($row["reifyDate"])){
-         $reify_status = "Reified on: " .$row["reifyDate"];
+         $reify_status = "Reified";
        }
        else {
-         $reify_status= "REIFY HERE";
+         $reify_status= "Not Reified";
        }
        echo "<tr><td>"
        . $row["fromDate"]."</td><td>"
@@ -78,6 +67,7 @@
        . $row["instructions"].  "</td><td>"
         .str_replace (",","<br>",$row["medicineName"]).  "</td><td>"
         .str_replace (",","<br>",$row["companyName"]). "</td><td>"
+        .str_replace (",","<br>",$row["quantity"]).  "</td><td>"
          . $reify_status.  "</td>"
          . "</tr>";
       }

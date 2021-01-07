@@ -110,7 +110,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
       JOIN  company c ON (m.companyID=c.companyID)
       WHERE p.patientSSN =$patientSSN
       GROUP BY p.prescriptionID
-      ORDER BY reifyDate;";
+      ORDER BY fromDate;";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {

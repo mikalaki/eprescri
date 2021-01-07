@@ -37,7 +37,7 @@
   }
   else
     {
-      echo '<table class="table table-striped">
+      echo '</br><table class="table table-striped">
               <tr>
               <th scope="col"> From </th>
               <th scope="col"> To </th>

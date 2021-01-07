@@ -73,7 +73,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
 
           </ul>
         </div>
-        <!-- Doctor's main Content -->
+        <!-- Pharmacy's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
             Enter the SSN of a patient in order to see his medical prescriptions Record.

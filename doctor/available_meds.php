@@ -99,15 +99,87 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
         <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
-            Currently Available medicines.
+            Available Medicines, medicines' names are in alphabetical order.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
-          <?php require_once("available_medicines_table.php"); ?>
 
+          <table class="table table-striped table-sm table-bordered">
+                       <tr>
+                       <td> Name </td>
+                       <td> Company </td>
+                       <td> Price </td>
+                       <td> Category</td>
+                       <td> Containdications</td>
+                       <td> Milligrams</td>
+                       <td> Description</td>
+                       <td> Substances</td>
+                       </tr>
 
+           <?php
+
+               if (isset($_GET['pageno'])) {
+                   $pageno = $_GET['pageno'];
+               } else {
+                   $pageno = 1;
+               }
+               $no_of_records_per_page = 3;
+               $offset = ($pageno-1) * $no_of_records_per_page;
+
+               $conn=mysqli_connect("localhost","eprescriadmin","f4rm4k0","eprescridb");
+               // Check connection
+               if (mysqli_connect_errno()){
+                   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                   die();
+               }
+
+               $total_pages_sql = "SELECT COUNT(*) FROM medicine";
+               $result = mysqli_query($conn,$total_pages_sql);
+               $total_rows = mysqli_fetch_array($result)[0];
+               $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+               $sql = "SELECT m.name,m.code AS medcode,c.name AS company,c.companyID AS compID,m.price,m.category,m.containdications,m.milligrams,m.description,GROUP_CONCAT(medicine_substances.substance) AS substances
+                FROM medicine m
+                JOIN company c ON (c.companyID=m.companyID)
+                JOIN medicine_substances ON (m.code=medicine_substances.code AND medicine_substances.companyID = m.companyID)
+                GROUP BY medcode,compID
+                ORDER BY m.name
+                LIMIT $offset, $no_of_records_per_page";
+               $res_data = mysqli_query($conn,$sql);
+               while($row = mysqli_fetch_array($res_data)){
+                 echo "<tr><td>"
+                     . $row["name"]."</td><td>"
+                     . $row["company"].  "</td><td>"
+                     . $row["price"].  "</td><td>"
+                      .$row["category"].  "</td><td>"
+                      .$row["containdications"].  "</td><td>"
+                      .$row["milligrams"].  "</td><td>"
+                       .$row["description"]. "</td><td>"
+                       .str_replace (",","<br>",$row['substances']) . '</td>' ."</tr>";
+               }
+               echo "</table>";
+               mysqli_close($conn);
+           ?>
+
+           </table>
+           <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+           <strong>Page <?php echo $pageno." of ".$total_pages; ?></strong>
+           </div>
+            <ul class="pagination">
+                <li class="page-item" id="firstButtonPharmacy"><a class="page-link" href="?pageno=1">First</a></li>
+                <li class="page-item" id="nextButtonPharmacy" class=" class="page-link" <?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                    <a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+                </li>
+                <li class="page-item" id="prevButtonPharmacy" class=" class="page-link" <?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                    <a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+                </li>
+                <li class="page-item" id="lastButtonPharmacy"><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+            </ul>
+            <ul class="pagination">
+
+          <!-- HERE WILL LOAD THE patient_prescription_table.php -->
         </div>
         </div>
       </div>

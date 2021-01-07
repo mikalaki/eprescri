@@ -76,7 +76,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
         <!-- Pharmacy's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-primary" role="alert">
-            Available Medicines
+            Available Medicines, medicines' names are in alphabetical order.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -119,7 +119,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
                $sql = "SELECT m.name,c.name AS company,m.price,m.category,m.containdications,m.milligrams,m.description
                 FROM medicine m
                 JOIN company c ON (c.companyID=m.companyID)
-                 LIMIT $offset, $no_of_records_per_page";
+                ORDER BY m.name
+                LIMIT $offset, $no_of_records_per_page";
                $res_data = mysqli_query($conn,$sql);
                while($row = mysqli_fetch_array($res_data)){
                  echo "<tr><td>"

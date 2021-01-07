@@ -248,7 +248,7 @@
                 $stmt_ins_med->bind_param("ssss",$prescriptionID,$medCode, $tCompanyID, $_POST[$strQuantity]);
                 if($stmt_ins_med->execute()&& $i==$nMeds){
                   echo "<div class=\"container alert alert-success\" role=\"alert\">
-                        <h4><i class=\"fas fa-exclamation-triangle\"></i>Prescription added succesfully.</h4>
+                        <h4><i class=\"far fa-check-square\"></i>  Prescription added succesfully.</h4>
                       </div>";
                 }
                 $stmt_ins_med->close();
