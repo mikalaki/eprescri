@@ -88,11 +88,11 @@
 
                         }
                         echo "</tbody>
-                        <caption>Date are in format YYYY-MM-DD.</caption>
+                        <caption>Date's format is YYYY-MM-DD.</caption>
                         </table>";
               }
               else{
-                echo "<h5><i class=\"fas fa-exclamation-triangle\"></i> You Have no prescriptions yet!</h5>";
+                echo "<h5><i class=\"fas fa-exclamation-triangle\"></i> No prescriptions found!</h5>";
               }
 
               /* TO BE DELETED BELLOW*/
