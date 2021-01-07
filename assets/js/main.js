@@ -192,8 +192,20 @@ return false;
   }
 );
 
+$('.reifybuttons').on('click',function()
+  {
+   $.ajax(
+{
+    url:"reify.php",
+    type:"POST",
+    data:{
+  "prescriptionID": this.id.toString()
+}
+}
+);
 
-
+}
+);
 //////////////end /////////////
 
 })(jQuery);
