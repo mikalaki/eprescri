@@ -84,11 +84,12 @@
                  <button type=\"button\" class=\"btn btn-secondary btn-sm\"><i class=\"far fa-edit\"></i></button>
                  <a href=deleteprescriptiondialog.php?ID=".$row['prescriptionID']." <button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>
                  </td>
-                 </tr>
-                 </tbody>
-                 <caption>Date are in format YYYY-MM-DD.</caption>
-                 </table>";
+                 </tr>";
+
                         }
+                        echo "</tbody>
+                        <caption>Date are in format YYYY-MM-DD.</caption>
+                        </table>";
               }
               else{
                 echo "<h5><i class=\"fas fa-exclamation-triangle\"></i> You Have no prescriptions yet!</h5>";
