@@ -95,7 +95,7 @@ if (session_status() == PHP_SESSION_NONE) {
          <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
           <div class="alert alert-success" role="alert">
-            <h4><i class="fas fa-exclamation-success"></i>Medicine Deleted Successfully!</h4>
+            <h4><i class="fas fa-exclamation-success"></i>Prescription Deleted Successfully!</h4>
           </div>
             <a href="prescriptions.php"><button type="button" class="btn btn-outline-dark"><i class="fas fa-chevron-left"></i> Go back to available medicines.</button></a>
 

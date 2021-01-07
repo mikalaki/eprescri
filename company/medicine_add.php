@@ -57,5 +57,17 @@ if ($stmt = $conn->prepare('INSERT INTO medicine (code , category, name, price ,
 	echo 'Could not prepare statement!';
 }
 
+
+if ($stmt = $conn->prepare('INSERT INTO medicine_substances (substance , code, companyID) VALUES (?,?, ?)')) {
+	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+	$stmt->bind_param('sss',  $_POST['medSub'] , $code_idx ,  $id_key );
+	$stmt->execute();
+  header("Location:added_medicine_suc.php");
+	//echo 'You have successfully added the medicine!';
+} else {
+	// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
+	echo 'Could not prepare statement!';
+}
+
 // header("newmedicine.php");
 ?>

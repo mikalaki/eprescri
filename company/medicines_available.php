@@ -23,7 +23,6 @@ $id_key =   $row['id'];
 
 
 
-
 // Create a query for the database
 $query_2 = "SELECT medicine.code AS 'medcode',company.companyID  AS 'compID', medicine.name AS 'medname',
 company.name AS 'compname',medicine.category,medicine.milligrams,GROUP_CONCAT(medicine_substances.substance)AS 'substances',
@@ -31,7 +30,7 @@ medicine.price
 FROM medicine
 JOIN company ON medicine.companyID = company.companyID
 JOIN medicine_substances ON (medicine_substances.code=medicine.code AND medicine_substances.companyID = medicine.companyID)
-WHERE company.companyID = '{$id_key}'
+WHERE company.companyID = '$id_key'
 GROUP BY medcode,compID
 ORDER BY medcode,compID
 ";

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 ?>
 <html lang="en">
 
@@ -37,6 +39,7 @@ session_start();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
 
+
   <!-- =======================================================
   * Template Name: MeFamily - v2.2.0
   * Template URL: https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/
@@ -44,33 +47,30 @@ session_start();
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<?php
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
-  require("please_login.php");
-}
-?>
 <body>
 
   <!-- ======= Header ======= -->
   <?php include('header_region.php'); ?>
   <!-- End Header -->
-  <!-- ======= Breadcrumbs ======= -->
-  <section id="breadcrumbs" class="breadcrumbs">
-    <div class="container">
 
-      <div class="d-flex justify-content-between align-items-center">
-        <h2>Available Medicines</h2>
-        <ol>
-          <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Company</a></li>
-          <li>Medicines</li>
-        </ol>
+
+
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Available Medicines</h2>
+          <ol>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="#">Company</a></li>
+            <li>Medicines</li>
+          </ol>
+        </div>
       </div>
-
-    </div>
-  </section><!-- End Breadcrumbs -->
-
+    </section><!-- End Breadcrumbs -->
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -81,55 +81,44 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <!-- Doctor's Submenu -->
         <div class="col-sm-3">
           <ul class="list-group">
+
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
             <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
             <a href="newmedicine.php"><li class="list-group-item">Add  Medicines </li></a>
+
           </ul>
-         </div>
-
-        <!-- Doctor's main Content -->
-        <div class="col-sm-9 doc-area-main">
-          <div class="alert alert-primary" role="alert">
-            Currently Available medicines.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-           <?php require_once('medicines_available.php');  ?>
-          <!-- php for load the available medicines -->
-
-          <div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
-          <strong>Page <?php echo $page_no." of ".$total_no_of_pages; ?></strong>
-          </div>
-          <nav>
-            <ul class="pagination">
-              <?php if($page_no > 1){
-              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=1'>First Page</a></li>";
-              } ?>
-
-              <li class="page-item" <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
-              <a class="page-link" <?php if($page_no > 1){
-              echo "href='?page_no=$previous_page'";
-              } ?>>Previous</a>
-              </li>
-
-              <li class="page-item"  <?php if($page_no >= $total_no_of_pages){
-              echo "class='disabled'";
-              } ?>>
-              <a class="page-link" <?php if($page_no < $total_no_of_pages) {
-              echo "href='?page_no=$next_page'";
-              } ?>>Next</a>
-              </li>
-
-              <?php if($page_no < $total_no_of_pages){
-              echo "<li class=\"page-item\"><a class=\"page-link\" href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
-              }
-
-              ?>
-            </ul>
-          </nav>
 
         </div>
+
+
+         <!-- Doctor's main Content -->
+        <div class="col-sm-9 doc-area-main">
+          <div class="alert alert-success" role="alert">
+            <h4><i class="fas fa-exclamation-success"></i>Medicine Added Successfully!</h4>
+          </div>
+            <a href="index.php"><button type="button" class="btn btn-outline-dark"><i class="fas fa-chevron-left"></i> Go back to available medicines.</button></a>
+
+          <?php
+
+
+          ?>
+
+
+        </div>
+
+
+        <!-- <div class="col-md-6 d-flex align-items-stretch">
+          <div class="card">
+            <div class="card-img">
+              <img src="assets/img/events-2.jpg" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">James 6th Birthday</h5>
+              <p class="font-italic text-center">Sunday, November 15th at 7:00 pm</p>
+              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
+            </div>
+          </div> -->
+
         </div>
       </div>
 

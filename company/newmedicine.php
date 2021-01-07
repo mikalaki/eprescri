@@ -115,6 +115,12 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
             </div>
 
             <div  class="form-group">
+              <label for="medicines">Substance</label>
+              <input type="text" class="form-control" name='medSub'  id="medicineName" placeholder=" e.g. Ranexin" required>
+              </ul>
+            </div>
+
+            <div  class="form-group">
               <label for="medicines">Price</label>
               <input type="text" class="form-control" name='medPr' id="medicinePrice" placeholder="e.g. 15€ " required>
               <ul id="medicinePrice">
