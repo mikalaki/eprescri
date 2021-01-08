@@ -48,6 +48,7 @@
               JOIN company comp on m.companyID =comp.companyID
               WHERE  prescri.doctorID =  $doctorID
               GROUP BY prescriptionID
+              ORDER BY fromDate DESC
               LIMIT $offset, $total_records_per_page;";
 
               $result = $conn->query($query);

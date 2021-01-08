@@ -87,8 +87,8 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
-            <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
-            <a href="newmedicine.php"><li class="list-group-item">Add Medicines </li></a>
+            <a href="available_meds.php"><li class="list-group-item">Company's Medicines</li></a>
+            <a href="newmedicine.php"><li class="list-group-item active">Add Medicine</li></a>
           </ul>
         </div>
 
@@ -111,7 +111,6 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
             <div  class="form-group">
               <label for="medicines">Name</label>
               <input type="text" class="form-control" name='medNam'  id="medicineName" placeholder=" e.g. Cipro" required>
-              </ul>
             </div>
 
             <div  class="form-group">
@@ -122,9 +121,8 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
 
             <div  class="form-group">
               <label for="medicines">Price</label>
-              <input type="text" class="form-control" name='medPr' id="medicinePrice" placeholder="e.g. 15€ " required>
-              <ul id="medicinePrice">
-              </ul>
+              <input type="text" class="form-control" name='medPr' id="medicinePrice"  aria-describedby="medicinePrice" placeholder="e.g. 15.50 " required>
+
             </div>
 
 
@@ -136,7 +134,6 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
             <div  class="form-group">
               <label for="medicines">Milligrams</label>
               <input type="text" class="form-control" name="medMg" id="medicineMg" placeholder=" e.g. 500mg" required>
-              </ul>
             </div>
 
             <div class="form-group">

@@ -106,54 +106,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-<<<<<<< HEAD
-            <?php require_once('doctor_patients.php'); ?>
-
-          <!--
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-
-                          <th scope="col">SSN</th>
-                          <th scope="col">First Name</th>
-                          <th scope="col">Last Name</th>
-                          <th scope="col">Patient From</th>
-                          <th scope="col">Last Visit</th>
-                          <th scope="col">Watch Record</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-
-                          <td>12345678911</td>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>01/01/2021</td>
-                          <td>01/01/2021</td>
-                          <td><button type="button" class="btn btn-primary">Watch</button></td>
-                        </tr>
-                        <tr>
-
-                          <td>12345678911</td>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>01/01/2021</td>
-                          <td>01/01/2021</td>
-                          <td><button type="button" class="btn btn-primary">Watch</button></td>
-                        </tr>
-                        <tr>
-
-                          <td>12345678911</td>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>01/01/2021</td>
-                          <td>01/01/2021</td>
-                          <td><button type="button" class="btn btn-primary">Watch</button></td>
-                        </tr>
-                      </tbody>
-                    </table> -->
-=======
-
 
           <table class="table table-striped">
             <thead>
@@ -204,10 +156,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
             </ul>
           </nav>
 
-
->>>>>>> 74fea10b5db4bfd4153020eebc57acf9b249ca88
-
-        </div>
 
 
         <!-- <div class="col-md-6 d-flex align-items-stretch">

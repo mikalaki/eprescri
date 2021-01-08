@@ -134,8 +134,8 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
             $("#numOfMeds").val(inputMeds);
               $("#btnAdd").click(function(){
                   inputMeds++;
-                  $("#ulMedicinesDoctor").append("<input name =\"medicines"+inputMeds+ "\" type=\"text\" class=\"form-control new_med_form\" id=\"medicinesDoctor\" placeholder=\" e.g. Advil-iasis-8\">");
-                  $("#ulMedicinesQuantity").append("<input name =\"quantity"+inputMeds+ "\" type=\"text\" class=\"form-control\" id=\"medicinesQuantity\" aria-describedby=\"medicinesquanHelp\" placeholder=\"e.g. 2\">");
+                  $("#ulMedicinesDoctor").append("<input name =\"medicines"+inputMeds+ "\" type=\"text\" class=\"form-control new_med_form\" id=\"medicinesDoctor\" placeholder=\" e.g. Advil-iasis-8\" required>");
+                  $("#ulMedicinesQuantity").append("<input name =\"quantity"+inputMeds+ "\" type=\"text\" class=\"form-control\" id=\"medicinesQuantity\" aria-describedby=\"medicinesquanHelp\" placeholder=\"e.g. 2\" required>");
                   $("#numOfMeds").val(inputMeds);
                   $( ".new_med_form" ).autocomplete({
                     source: 'ajax-medicines.php',
@@ -155,7 +155,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
           <form action="add_prescription.php" method="post">
             <div class="form-group">
               <label for="patientSSN">Patient's SSN <strong>*</strong></label>
-              <input name ="SSN" type="text" class="form-control" id="patientSSN" aria-describedby="patientSSNformHelp" placeholder="e.g. 01019012345">
+              <input name ="SSN" type="text" class="form-control" id="patientSSN" aria-describedby="patientSSNformHelp" placeholder="e.g. 01019012345" required>
               <small id="patientSSNformHelp" class="form-text text-muted">Enter the SSN of the patient you want to write the prescription to.</small>
             </div>
 
@@ -166,7 +166,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
 
               <ul id="ulMedicinesDoctor" class="list-unstyled">
               <li>
-                <input name ="medicines1" type="text" class="form-control" id="medicinesDoctor" aria-describedby="medicinesformHelp" placeholder=" e.g. Advil-iasis-8">
+                <input name ="medicines1" type="text" class="form-control" id="medicinesDoctor" aria-describedby="medicinesformHelp" placeholder=" e.g. Advil-iasis-8" required>
               </li>
               </ul>
               <small id="medicinesformHelp" class="form-text text-muted">Search for a valid <strong> medicine name</strong>. Results return in format <strong>Medicine-Company-[medicine's code]</strong>
@@ -176,7 +176,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
               <label for="medicines"><strong>Quantity *</strong></label>
               <ul id="ulMedicinesQuantity" class="list-unstyled">
               <li>
-                <input name ="quantity1" type="text" class="form-control" id="medicinesQuantity" aria-describedby="medicinesquanHelp" placeholder="e.g. 2">
+                <input name ="quantity1" type="text" class="form-control" id="medicinesQuantity" aria-describedby="medicinesquanHelp" placeholder="e.g. 2" required>
               </li>
               </ul>
               </div>
@@ -194,7 +194,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
               <label for="from">From date: <strong>*</strong></label>
               <input name ="prescription_fromdate" class="form-control" type="date" id="from" aria-describedby="prescriptionfromHelp"
                      value="2021-01-01"
-                     min="2020-01-01" max="2025-01-01">
+                     min="2020-01-01" max="2025-01-01" required>
               <small id="patientSSNformHelp" class="form-text text-muted">The beginning date of the prescription.</small>
             </div>
 
@@ -202,7 +202,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='doctor') {
               <label for="to">To date: <strong>*</strong></label>
               <input name ="prescription_todate" class="form-control" type="date" id="to" aria-describedby="prescriptiontoHelp"
                      value="2021-02-01"
-                     min="2020-01-01" max="2025-01-01">
+                     min="2020-01-01" max="2025-01-01" required>
               <small id="prescriptiontoHelp" class="form-text text-muted">The end date of the prescription.</small>
             </div>
             <input id="numOfMeds" name="numberOfMeds" type="hidden" value="">

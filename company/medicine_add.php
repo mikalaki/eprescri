@@ -19,7 +19,7 @@ if (empty($_POST['medCat']) || empty($_POST['medNam']) || empty($_POST['medPr'])
 	exit('Please add all the fields');
 }
 
-// Query to get the keys from the users table
+// Query to get the id from the users table
 $query_1 = "SELECT user_company.id
 FROM user_company
 WHERE username = '{$_SESSION['name']}'";
@@ -32,7 +32,11 @@ $id_key =   $row['id'];
   }
 }
 
-$query_2 = "SELECT medicine.code FROM medicine ORDER BY medicine.code DESC LIMIT 1";
+$companyID= $_SESSION['id'];
+
+$query_2 = "SELECT medicine.code FROM medicine
+WHERE companyID = $companyID
+ORDER BY medicine.code DESC LIMIT 1";
 
 
 $response_2 = $conn->query($query_2);
@@ -44,13 +48,20 @@ $code_idx=  $row['code'];
 }
 $code_idx = $code_idx + 1;
 
-echo $code_idx . $_POST['medCat'] .$_POST['medNam']  .  $_POST['medPr']  . $_POST['medContr'] . $_POST['medMg'].$_POST['medDesc'] . $code_idx ;
+//echo $code_idx . $_POST['medCat'] .$_POST['medNam']  .  $_POST['medPr']  . $_POST['medContr'] . $_POST['medMg'].$_POST['medDesc'] . $code_idx ;
 // Username doesnt exists, insert new account
 if ($stmt = $conn->prepare('INSERT INTO medicine (code , category, name, price , containdications , milligrams , description , companyID) VALUES (?,?, ?, ?, ? ,? ,? ,? )')) {
 	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
 	$stmt->bind_param('ssssssss', $code_idx ,  $_POST['medCat'], $_POST['medNam'] ,  $_POST['medPr']  , $_POST['medContr'] , $_POST['medMg'], $_POST['medDesc'] , $id_key );
-	$stmt->execute();
-  header("Location:newmedicine.php");
+
+  if($stmt->execute()){
+    header("Location:newmedicine.php");
+  }
+  else{
+    echo "Problem inserting medicine data";
+    header( "refresh:3;url=newmedicine.php" );
+
+  }
 	//echo 'You have successfully added the medicine!';
 } else {
 	// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.

@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
+// We need to use sessions, so you should always start sessions using the below code.
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
+
+
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
+  require("please_login.php");
+}
+
 ?>
 <html lang="en">
 
@@ -83,8 +91,8 @@ if (session_status() == PHP_SESSION_NONE) {
           <ul class="list-group">
 
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
-            <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
-            <a href="newmedicine.php"><li class="list-group-item">Add  Medicines </li></a>
+            <a href="available_meds.php"><li class="list-group-item">Company's Medicines</li></a>
+            <a href="newmedicine.php"><li class="list-group-item">Add Medicine</li></a>
 
           </ul>
 

@@ -1,6 +1,6 @@
 <?php
   require_once('../mysqli_connection.php');
-echo session_id();
+
   if(!isset($_GET['searchInputPatient'])){
 
   }
@@ -9,14 +9,13 @@ echo session_id();
     echo "Enter a valid patientSSN";
   }
   else {
+    if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
+      require("please_login.php");
+    }
 
     $patientSSN=$_GET['searchInputPatient'];
 
-  if (isset($_GET['pageno'])) {
-      $pageno = $_GET['pageno'];
-  } else {
-      $pageno = 1;
-  }
+
 
 
   $sql1="SELECT prescriptionID FROM prescription WHERE patientSSN= $patientSSN " ;
@@ -46,12 +45,8 @@ echo session_id();
               <th scope="col"> Company </th>
               <th scope="col"> Reified Status </th>
               </tr>';
-      $arr = array();
-      while ($row = mysqli_fetch_array($prescriptionIDs)) {
-          $arr[] = $row["prescriptionID"];
-      }
-    $presctiptionIDString=strval($arr[$pageno-1]);
-      $total_pages=count($arr);
+
+
 
       $sql = "SELECT p.prescriptionID,p.fromDate, p.toDate, p.instructions , GROUP_CONCAT(m.name) AS medicineName, GROUP_CONCAT(c.name) AS companyName,reifyDate
       FROM prescription p

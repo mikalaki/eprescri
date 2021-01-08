@@ -3,7 +3,7 @@
 session_start();
 session_destroy();
 
-echo "<section ><h3>You have been logged out.</h3></section >";
-header( "refresh:3;url=login.php" );
+echo "<section ><h3>Logging out.</h3></section >";
+header( "refresh:1;url=login.php" );
 
 ?>

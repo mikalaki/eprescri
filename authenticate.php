@@ -58,17 +58,17 @@ if ($stmt = $conn->prepare($query)) {
     $_SESSION['usertype'] = $_POST["usertype"];
     echo "<section ><h3>Welcome ".$_SESSION['name']."!</h3></section >";
     // echo '<h1>'.$_POST["usertype"].'</h1>' ; //this was test
-    header( "refresh:3;url=".$_SESSION['usertype'] );
+    header( "refresh:1;url=".$_SESSION['usertype'] );
 
   } else {
     // Incorrect password
     echo "<section ><h3>Incorrect username and/or password!</h3></section >";
-    header( "refresh:3;url=login.php?type=".$_POST["usertype"]."" );
+    header( "refresh:1;url=login.php?type=".$_POST["usertype"]."" );
   }
   } else {
   // Incorrect username
     echo "<section ><h3>Incorrect username and/or password!</h3></section >";
-    header( "refresh:3;url=login.php?type=".$_POST["usertype"]."" );
+    header( "refresh:1;url=login.php?type=".$_POST["usertype"]."" );
   }
   $stmt->close();
 }

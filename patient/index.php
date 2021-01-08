@@ -90,57 +90,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='patient') {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+            </div>
+            <?php require_once('patient_prescription.php'); ?>
 
 
-        //   <?php require_once('patients_prescription.php'); ?>
-          </div>
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Prescription ID</th>
-                <th scope="col">From Doctor</th>
-                <th scope="col">Medicines</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Instructions</th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col">Refy Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Kostas Tsigaros</td>
-                <td>Xanax,Lexotanil</td>
-                <td>3</td>
-                <td>One and one pill everyday after wake up.</td>
-                <td>01/01/2021</td>
-                <td>01/05/2021</td>
-                <td>01/01/2021</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Kostas Tsigaros</td>
-                <td>Xanax,Lexotanil</td>
-                <td>3</td>
-                <td>One and one pill everyday after wake up.</td>
-                <td>01/01/2021</td>
-                <td>01/05/2021</td>
-                <td>01/01/2021</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Kostas Tsigaros</td>
-                <td>Xanax,Lexotanil</td>
-                <td>3</td>
-                <td>One and one pill everyday after wake up.</td>
-                <td>01/01/2021</td>
-                <td>01/05/2021</td>
-                <td>Not refied</td>
-              </tr>
-            </tbody>
-          </table>
+
+
+
+
         </div>
 
         </div>

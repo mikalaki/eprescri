@@ -93,14 +93,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
 
           </form>
 
+          <?php require_once("SSN_prescriptions.php");?>
 
-          <?php require_once('SSN_prescriptions.php'); ?>
           <!-- HERE WILL LOAD THE patient_prescription_table.php -->
+
         </div>
 
         </div>
       </div>
-    </div>
   </section><!-- End Event List Section -->
 </main><!-- End #main -->
   <!-- End Patients Section -->

@@ -90,13 +90,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
     {
       echo '<table class="table table-striped">
               <tr>
-              <th scope="col"> From </th>
-              <th scope="col"> To </th>
-              <th scope="col"> Instructions </th>
-              <th scope="col"> Medicines </th>
-              <th scope="col"> Company </th>
-              <th scope="col"> Quantity </th>
-              <th scope="col"> Reified</th>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Instructions</th>
+              <th scope="col">Medicines</th>
+              <th scope="col">Company</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Reified</th>
               </tr>';
       $arr = array();
       while ($row = mysqli_fetch_array($prescriptionIDs)) {
@@ -110,7 +110,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
       JOIN  company c ON (m.companyID=c.companyID)
       WHERE p.patientSSN =$patientSSN
       GROUP BY p.prescriptionID
-      ORDER BY fromDate;";
+      ORDER BY fromDate DESC;";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {

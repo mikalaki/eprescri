@@ -66,7 +66,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
   if($row['companyID'] !=  $_SESSION['id']){
     echo "<div class=\"container alert alert-danger\" role=\"alert\">
-            <h4><i class=\"fas fa-exclamation-triangle\"></i> PERMISSION DENIED! TRIED TO DELETE ANOTHER DOCTOR'S PRESCRIPTION!!!</h4>
+            <h4><i class=\"fas fa-exclamation-triangle\"></i> PERMISSION DENIED! TRIED TO DELETE ANOTHER MEDICINE!</h4>
           </div>";
 
     header( "refresh:3;url=prescriptions.php" );
@@ -111,8 +111,8 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
-            <a href="available_meds.php"><li class="list-group-item">Medicines available</li></a>
-            <a href="newmedicine.php"><li class="list-group-item">Add  Medicines </li></a>
+            <a href="available_meds.php"><li class="list-group-item">Company's Medicines</li></a>
+            <a href="newmedicine.php"><li class="list-group-item">Add Medicine</li></a>
 
           </ul>
         </div>
