@@ -50,6 +50,7 @@ section.about{
   padding-bottom: 5%;
 }
 
+
 @media (min-width: 576px) {
   #doc-area .doc-area-main{
     border-left: 1px solid black
@@ -78,4 +79,9 @@ section.about{
 }
 #medicinesQuantity{
   margin-bottom: 8px;
+}
+
+
+.imageNoBorder {
+  border: none !important;
 }
