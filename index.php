@@ -229,25 +229,8 @@
 
         <div class="section-title">
           <h2 class="noncapitalize-h2-title">Log in as:</h2>
-          <p>Log in as doctor, patient, pharmacy or company in order to access the functionality of eprescri.</p>
         </div>
-        <div class="alert alert-warning" role="alert">
-          <h2 class="text-center"> !Under <strong>Heavy</strong> Construction! </h2>
-        </div>
-        <!-- Portfolio Grid Items-->
 
-        <!-- <div class="owl-carousel recent-photos-carousel">
-          <a href="assets/img/recent-photos/recent-photos-1.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-1.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-2.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-2.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-3.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-3.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-4.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-4.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-5.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-5.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-6.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-6.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-7.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-7.jpg" alt=""></a>
-          <a href="assets/img/recent-photos/recent-photos-8.jpg" class="venobox" data-gall="recent-photos-carousel"><img src="assets/img/recent-photos/recent-photos-8.jpg" alt=""></a>
-        </div> -->
-
-      </div>
     </section><!-- End Recent Photos Section -->
 
   </main><!-- End #main -->
