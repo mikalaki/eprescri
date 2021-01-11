@@ -56,23 +56,30 @@ if (session_status() == PHP_SESSION_NONE) {
   //Check IF the doctor wants to delete the prescription is the doctor wrote the prescription.
   $medicineCode = $_GET['ID'];
 
+  $thisCompanyID = $_SESSION['id'];
+
   require_once('../mysqli_connection.php');
 
   $checkQuery = "SELECT companyID FROM medicine WHERE code = $medicineCode";
 
   $companyID = $conn->query($checkQuery);
 
-  $row = mysqli_fetch_array($companyID);
+  $isMedexists = false;
 
-  if($row['companyID'] !=  $_SESSION['id']){
+  while($row = mysqli_fetch_array($companyID)){
+    if($row['companyID'] ==  $_SESSION['id']){
+      $isMedexists = true;
+    }
+  }
+  if($isMedexists != true){
+
     echo "<div class=\"container alert alert-danger\" role=\"alert\">
-            <h4><i class=\"fas fa-exclamation-triangle\"></i> PERMISSION DENIED! TRIED TO DELETE ANOTHER MEDICINE!</h4>
+            <h4><i class=\"fas fa-exclamation-triangle\"></i> Medicine with code=" .$medicineCode. " doesn't exist in your company's medicines!!!</h4>
           </div>";
 
-    header( "refresh:3;url=prescriptions.php" );
+    header( "refresh:2;url=index.php" );
     exit;
   }
-
 
 
 

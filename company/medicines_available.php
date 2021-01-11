@@ -103,10 +103,26 @@ while($row = mysqli_fetch_array($response)){
  <td>".$row['substances']."</td>
   <td>".$row['price']."</td>
  <td class=\"prescription_buttons_td\">
- <button type=\"button\" class=\"btn btn-secondary btn-sm\"><i class=\"far fa-edit\"></i></button>
+
  <a href=deletemedicinedialog.php?ID=".$row['medcode']." <button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>
  </td>
  </tr>";
+
+//ENALAKTIKA ME EDIT:
+//  echo "<tr>
+// <td>".$row['medcode']."</td>
+// <td>".$row['medname']."</td>
+// <td>".$row['category']."</td>
+// <td>".$row['milligrams']."</td>
+// <td>".$row['substances']."</td>
+//  <td>".$row['price']."</td>
+// <td class=\"prescription_buttons_td\">
+// <button type=\"button\" class=\"btn btn-secondary btn-sm\"><i class=\"far fa-edit\"></i></button>
+// <a href=deletemedicinedialog.php?ID=".$row['medcode']." <button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>
+// </td>
+// </tr>";
+
+
 
 
 

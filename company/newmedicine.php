@@ -104,8 +104,22 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
           <form name="form" action="medicine_add.php" method="post" >
 
             <div class="form-group">
-              <label for="patientSSN">Category</label>
-              <input type="text"  class="form-control" name='medCat' id="medicineCategory" aria-describedby="patientSSNformHelp" placeholder="e.g. Antibiotcs" required>
+              <label for="category">Choose a Category:</label>
+                <select id="category" name="medCat" class="form-control">
+                  <option value="Analgesics">Analgesics</option>
+                  <option value="Antibiotics">Antibiotics</option>
+                  <option value="Carcinogens">Carcinogens</option>
+                  <option value="Diuretics">Diuretics</option>
+                  <option value="Glucocorticoids">Glucocorticoids</option>
+                  <option value="Hormones">Hormones</option>
+                  <option value="Insecticides">Insecticides</option>
+                  <option value="Mutagens">Mutagens</option>
+                  <option value="Narcotics">Narcotics</option>
+                  <option value="Pesticides">Pesticides</option>
+                  <option value="Serotonin Agents">Serotonin Agents</option>
+                  <option value="Vitamins">Vitamins</option>
+                </select>
+                <small id="categorySelectHelp" class="form-text text-muted">Select above a category for your new medicine.</small>
             </div>
 
             <div  class="form-group">
@@ -128,7 +142,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
 
             <div class="form-group">
               <label for="prescriptionInstructions">Contradctions</label>
-              <textarea class="form-control" name="medContr" id="medicineContradictions" placeholder="Write the contradictions of the medicine "></textarea required>
+              <textarea class="form-control" name="medContr" id="medicineContradictions" placeholder="Write the contradictions of the medicine " required></textarea >
             </div>
 
             <div  class="form-group">
@@ -138,7 +152,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
 
             <div class="form-group">
               <label for="prescriptionInstructions">Description</label>
-              <textarea class="form-control" name="medDesc"  id="medicineDescription" placeholder="Write the description for the medicine "></textarea required>
+              <textarea class="form-control" name="medDesc"  id="medicineDescription" placeholder="Write the description for the medicine " required></textarea >
             </div>
 
 <!-- Adding php code to post to the database -->

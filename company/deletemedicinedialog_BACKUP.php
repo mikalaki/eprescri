@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
-// We need to use sessions, so you should always start sessions using the below code.
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
-
-
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
-  require("please_login.php");
-}
-
 ?>
 <html lang="en">
 
@@ -55,6 +47,37 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<?php
+  // If the user is not logged in redirect to the login page...
+  if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
+    require("please_login.php");
+  }
+
+  //Check IF the doctor wants to delete the company is the owner of the prescription.
+  $medicineCode = $_GET['ID'];
+
+  require_once('../mysqli_connection.php');
+
+  $checkQuery = "SELECT companyID FROM medicine WHERE code = $medicineCode";
+
+  $companyID = $conn->query($checkQuery);
+
+  $row = mysqli_fetch_array($companyID);
+
+  if($row['companyID'] !=  $_SESSION['id']){
+    echo "<div class=\"container alert alert-danger\" role=\"alert\">
+            <h4><i class=\"fas fa-exclamation-triangle\"></i> PERMISSION DENIED! TRIED TO DELETE ANOTHER MEDICINE!</h4>
+          </div>";
+
+    header( "refresh:3;url=prescriptions.php" );
+    exit;
+  }
+
+
+
+
+?>
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -63,22 +86,20 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
 
 
 
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
 
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Available Medicines</h2>
-          <ol>
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="#">Company</a></li>
-            <li>Medicines</li>
-          </ol>
-        </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Available Medicines</h2>
+        <ol>
+          <li><a href="../index.php">Home</a></li>
+          <li><a href="#">Company</a></li>
+          <li>Medicines</li>
+        </ol>
       </div>
-    </section><!-- End Breadcrumbs -->
+    </div>
+  </section><!-- End Breadcrumbs -->
 
   <!-- ======= Menu - Patients' List Section ======= -->
   <section id="doc-area" >
@@ -89,22 +110,21 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <!-- Doctor's Submenu -->
         <div class="col-sm-3">
           <ul class="list-group">
-
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
             <a href="available_meds.php"><li class="list-group-item">Company's Medicines</li></a>
             <a href="newmedicine.php"><li class="list-group-item">Add Medicine</li></a>
 
           </ul>
-
         </div>
-
 
          <!-- Doctor's main Content -->
         <div class="col-sm-9 doc-area-main">
-          <div class="alert alert-success" role="alert">
-            <h4><i class="fas fa-exclamation-success"></i>Medicine Added Successfully!</h4>
+          <div class="alert alert-danger" role="alert">
+            <h4><i class="fas fa-exclamation-triangle"></i> Are you sure you want to delete the medicine with code = <?php echo $_GET['ID'];?>? </h4>
           </div>
-            <a href="index.php"><button type="button" class="btn btn-outline-dark"><i class="fas fa-chevron-left"></i> Go back to your medicines.</button></a>
+
+            <a href="deletemedicine.php?ID=<?php echo $_GET['ID'];?>" ><button type="button" class="btn btn-outline-danger">Yes, delete it!</button></a>
+            <a href="index.php"><button type="button" class="btn btn-outline-dark">No, go back.</button></a>
 
           <?php
 
