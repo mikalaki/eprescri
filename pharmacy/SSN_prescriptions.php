@@ -73,16 +73,16 @@
        }
        else {
 
-         $reify_status= "REIFY HERE";
+         $reify_status= "Reify";
          echo "<tr><td>"
          . $row["fromDate"]."</td><td>"
          . $row["toDate"].  "</td><td>"
          . $row["instructions"].  "</td><td>"
           .str_replace (",","<br>",$row["medicineName"]).  "</td><td>"
           .str_replace (",","<br>",$row["companyName"]). "</td ><td>
-          <button id=\"" .$row["prescriptionID"] . "\"
+          <a href=\"index.php?searchInputPatient=".$patientSSN ."\"> <button id=\"" .$row["prescriptionID"] . "\"
           class=\"btn btn-primary reifybuttons\" type=\"button\" >"
-           . $reify_status. "</button>" . "</td>"
+           . $reify_status. "</button></a>" . "</td>"
            . "</tr>";
        }
 

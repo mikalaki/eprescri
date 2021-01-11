@@ -83,16 +83,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
           </div>
 
 
-          <table class="table table-striped">
-                       <tr>
-                         <td> Name </td>
-                           <td> Company </td>
-                             <td> Price </td>
-                               <td> category</td>
-                                 <td> containdications</td>
-                                   <td> milligrams</td>
-                                 <td> prescription</td>
-                       </tr>
+          <table class="table table-striped table-sm table-bordered">
+            <tr>
+            <td> Name </td>
+            <td> Company </td>
+            <td> Price </td>
+            <td> Category</td>
+            <td> Containdications</td>
+            <td> Milligrams</td>
+            <td> Description</td>
+            <td> Substances</td>
+            </tr>
 
            <?php
 
@@ -116,9 +117,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
                $total_rows = mysqli_fetch_array($result)[0];
                $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-               $sql = "SELECT m.name,c.name AS company,m.price,m.category,m.containdications,m.milligrams,m.description
+               $sql = "SELECT m.name,m.code AS medcode,c.name AS company,c.companyID AS compID,m.price,m.category,m.containdications,m.milligrams,m.description,GROUP_CONCAT(medicine_substances.substance) AS substances
                 FROM medicine m
                 JOIN company c ON (c.companyID=m.companyID)
+                JOIN medicine_substances ON (m.code=medicine_substances.code AND medicine_substances.companyID = m.companyID)
+                GROUP BY medcode,compID
                 ORDER BY m.name
                 LIMIT $offset, $no_of_records_per_page";
                $res_data = mysqli_query($conn,$sql);
@@ -130,7 +133,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='pharmacy') {
                       .$row["category"].  "</td><td>"
                       .$row["containdications"].  "</td><td>"
                       .$row["milligrams"].  "</td><td>"
-                       .$row["description"]. "</td>". "</tr>";
+                       .$row["description"]. "</td><td>"
+                       .str_replace (",","<br>",$row['substances']) . '</td>' ."</tr>";
                }
                echo "</table>";
                mysqli_close($conn);

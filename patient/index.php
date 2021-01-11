@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
   // We need to use sessions, so you should always start sessions using the below code.
-  session_start();
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
 ?>
 <html lang="en">
 

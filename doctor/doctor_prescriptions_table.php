@@ -82,10 +82,25 @@
                  <td>".str_replace (",","<br>",$row["quantity"])."</td>
                  <td>".$row['instructions']."</td>
                  <td class=\"prescription_buttons_td\">
-                 <button type=\"button\" class=\"btn btn-secondary btn-sm\"><i class=\"far fa-edit\"></i></button>
                  <a href=deleteprescriptiondialog.php?ID=".$row['prescriptionID']." <button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>
                  </td>
                  </tr>";
+
+                //  echo "<tr>
+                // <td>".$row['prescriptionID']."</td>
+                // <td>".$row['patientSSN']."</td>
+                // <td>".$row['first_name']."</br>".$row['last_name']."</td>
+                // <td><strong>From:</strong></br>".$row['fromDate']."</br>
+                // <strong>To:</strong></br>".$row['toDate']."</td>
+                // <td>".str_replace (",","<br>",$row["medicineName"])."</td>
+                // <td>".str_replace (",","<br>",$row["companyName"]). "</td>
+                // <td>".str_replace (",","<br>",$row["quantity"])."</td>
+                // <td>".$row['instructions']."</td>
+                // <td class=\"prescription_buttons_td\">
+                // <button type=\"button\" class=\"btn btn-secondary btn-sm\"><i class=\"far fa-edit\"></i></button>
+                // <a href=deleteprescriptiondialog.php?ID=".$row['prescriptionID']." <button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>
+                // </td>
+                // </tr>";
 
                         }
                         echo "</tbody>
