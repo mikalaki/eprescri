@@ -68,7 +68,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <h2>Add Medicines </h2>
         <ol>
           <li><a href="../index.php">Home</a></li>
-          <li><a href="available_meds.php">Company</a></li>
+          <li><a href="index.php">Company</a></li>
           <li>Add Medicines </li>
         </ol>
       </div>
@@ -87,7 +87,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
-            <a href="available_meds.php"><li class="list-group-item">Company's Medicines</li></a>
+            <a href="index.php"><li class="list-group-item">Company's Medicines</li></a>
             <a href="newmedicine.php"><li class="list-group-item active">Add Medicine</li></a>
           </ul>
         </div>

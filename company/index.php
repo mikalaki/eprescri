@@ -85,7 +85,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
         <div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
-            <a href="available_meds.php"><li class="list-group-item active">Company's Medicines</li></a>
+            <a href="index.php"><li class="list-group-item active">Company's Medicines</li></a>
             <a href="newmedicine.php"><li class="list-group-item">Add Medicine</li></a>
 
           </ul>

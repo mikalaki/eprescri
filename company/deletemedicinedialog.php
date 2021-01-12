@@ -118,7 +118,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark "><strong><u>Company menu</u></strong></li>
-            <a href="available_meds.php"><li class="list-group-item">Company's Medicines</li></a>
+            <a href="index.php"><li class="list-group-item">Company's Medicines</li></a>
             <a href="newmedicine.php"><li class="list-group-item">Add Medicine</li></a>
 
           </ul>

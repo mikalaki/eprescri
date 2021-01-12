@@ -102,8 +102,8 @@ if ($stmt = $conn->prepare($query)) {
     echo "
     <section>
     <div class=\"container\">
-      <div class=\"row\">
-      <div class=\"col-md-12 justify-content-center\">
+      <div class=\"row \">
+      <div class=\"col-md-12 justify-content-center\" style=\"margin-top:10%;\">
 
         <div class=\"container spinner-grow text-primary\" role=\"status\">
           <span class=\"sr-only\">Loading...</span>

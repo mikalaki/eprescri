@@ -51,7 +51,7 @@ echo "
 <section>
 <div class=\"container\">
   <div class=\"row\">
-  <div class=\"col-12 justify-content-center\">
+  <div class=\"col-md-12 justify-content-center\" style=\"margin-top:10%;\">
     <div class=\"spinner-grow text-primary\" role=\"status\">
       <span class=\"sr-only\">Loading...</span>
     </div>
