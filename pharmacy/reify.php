@@ -7,6 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
   $pharmacyTIN = $_SESSION['id'];
   $prescriptionID=$_POST['prescriptionID'];
+  date_default_timezone_set("Europe/Athens");
   $sql="UPDATE prescription SET reifyDate=\"" .date("Y-m-d H:i:s") . "\" , reifPharmacyTIN=\"". $pharmacyTIN . "
   \"  WHERE prescriptionID=\"". $prescriptionID . "\""  ;
   echo $sql;
