@@ -56,7 +56,7 @@ if (session_status() == PHP_SESSION_NONE) {
   //Check IF the doctor wants to delete the prescription is the doctor wrote the prescription.
   $prescriptionID = $_GET['ID'];
 
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_doctor.php');
 
   $checkQuery = "SELECT doctorID FROM prescription WHERE prescriptionID = $prescriptionID";
 

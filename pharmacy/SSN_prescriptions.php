@@ -1,5 +1,5 @@
 <?php
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_pharmacy.php');
 
   if(!isset($_GET['searchInputPatient'])){
 

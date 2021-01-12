@@ -45,7 +45,7 @@
 session_start();
 
 // Change this to your connection info.
-require_once("mysqli_connection.php");
+require_once("mysqli_connection_logginmanager.php");
 // We have to take the form we were redirected from and :
 
 if( $_POST["usertype"]== 'doctor'){

@@ -128,7 +128,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
                $no_of_records_per_page = 3;
                $offset = ($pageno-1) * $no_of_records_per_page;
 
-               $conn=mysqli_connect("localhost","eprescriadmin","f4rm4k0","eprescridb");
+               require_once('mysqli_connection_doctor.php');
                // Check connection
                if (mysqli_connect_errno()){
                    echo "Failed to connect to MySQL: " . mysqli_connect_error();

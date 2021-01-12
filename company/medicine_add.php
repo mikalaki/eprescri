@@ -1,6 +1,6 @@
 <?php
 
-require_once('../mysqli_connection.php');
+require_once('mysqli_connection_company.php');
 session_start();
 if ($conn) {
   // echo "connected <br>";

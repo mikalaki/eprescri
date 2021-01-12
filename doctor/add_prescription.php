@@ -92,7 +92,7 @@
             require("please_login.php");
           }
 
-          require_once('../mysqli_connection.php');
+          require_once('mysqli_connection_doctor.php');
           if(isset($_POST['medicines1']) && $_POST['medicines1']!="" ){
             $nMeds = $_POST["numberOfMeds"];
           }

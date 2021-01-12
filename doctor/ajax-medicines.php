@@ -6,7 +6,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
   require("please_login.php");
 }
 
-require_once('../mysqli_connection.php');
+require_once('mysqli_connection_doctor.php');
 
 
 function get_medicine($conn , $term){

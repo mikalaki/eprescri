@@ -58,7 +58,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
   $thisCompanyID = $_SESSION['id'];
 
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_company.php');
 
   $checkQuery = "SELECT companyID FROM medicine WHERE code = $medicineCode";
 

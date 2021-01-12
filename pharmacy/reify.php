@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_pharmacy.php');
 
   $pharmacyTIN = $_SESSION['id'];
   $prescriptionID=$_POST['prescriptionID'];

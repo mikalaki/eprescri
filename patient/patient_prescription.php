@@ -1,5 +1,5 @@
 <?php
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_patient.php');
   // We need to use sessions, so you should always start sessions using the below code.
   if (session_status() == PHP_SESSION_NONE) {
     session_start();

@@ -1,6 +1,6 @@
 <?php
 // Get a connection for the database
-require_once('../mysqli_connection.php');
+require_once('mysqli_connection_company.php');
 
 if ($conn) {
   // echo "connected <br>";

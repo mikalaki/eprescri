@@ -63,7 +63,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
   <div class="container">
 
 <?php
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_doctor.php');
 
 
 

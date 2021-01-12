@@ -1,6 +1,6 @@
 <?php
 
-  require_once('../mysqli_connection.php');
+  require_once('mysqli_connection_doctor.php');
 
   if(!isset($_GET['searchInputPatient'])){
 

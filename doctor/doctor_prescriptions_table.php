@@ -8,7 +8,7 @@
               require("please_login.php");
             }
 
-            require_once('../mysqli_connection.php');
+            require_once('mysqli_connection_doctor.php');
 
             //initializing doctor id to the id of the doctor conected to session.
             $doctorID = $_SESSION['id'];

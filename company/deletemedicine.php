@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin'])|| $_SESSION['usertype']!='company') {
   require("please_login.php");
 }
 //connect to database.
-require_once('../mysqli_connection.php');
+require_once('mysqli_connection_company.php');
 
 
 $medicineCode = $_GET['ID'];
