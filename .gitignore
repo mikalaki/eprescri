@@ -4,3 +4,4 @@ company/mysqli_connection_company.php
 patient/mysqli_connection_patient.php
 doctor/mysqli_connection_doctor.php
 pharmacy/mysqli_connection_pharmacy.php
+mysqli_connection_logginmanager.php
