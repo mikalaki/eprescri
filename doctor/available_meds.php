@@ -196,7 +196,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
       <h3>eprescri</h3>
       <p>Electronic prescription platform for a more direct and complete medical prescription process!</p>
       <div class="copyright">
-        Website developed from Michael Karatzas, Apostolos Moustaklis and Kyriakos Marantidis. Front end based on the theme:
+        Website developed by Michael Karatzas, Apostolos Moustaklis and Kyriakos Marantidis. Front end based on the theme:
       </div>
       <div class="copyright">
         &copy; Copyright <strong><span>MeFamily</span></strong>. All Rights Reserved

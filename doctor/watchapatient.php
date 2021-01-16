@@ -156,7 +156,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['usertype']!='doctor') {
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div> -->
       <div class="copyright">
-        Website developed from Michael Karatzas, Apostolos Moustaklis and Kyriakos Marantidis. Front end based on the theme:
+        Website developed by Michael Karatzas, Apostolos Moustaklis and Kyriakos Marantidis. Front end based on the theme:
       </div>
       <div class="copyright">
         &copy; Copyright <strong><span>MeFamily</span></strong>. All Rights Reserved
