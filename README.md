@@ -9,7 +9,7 @@ Eprescri is a **concept electronic prescription platform, developed for the purs
 The website is hosted on an Amazon Web Services Instance of EC2, with OS UBUNTU 20.04, where Apache Server 2.4.41, PHP 7.4.3 and MariaDB 10.3.25 was installed. <br>
 The Backend of application is based on vanilia PHP 7.4.3 and mySQL and the front end is based on a [free HTML template](https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/), which use Bootstrap 4.5.3, customized to fit our apllication's needs . Fontawesome icons and Jquerry library also were used, where needed. 
 
-## User manual & credentials for testing
-- [User manual in greek language](#) <br>
+## User manual & Credentials for testing
+- [User manual in greek language](https://github.com/mikalaki/eprescri/blob/main/eprescri_user_manual_GR.pdf) <br>
 - *User manual in english* (coming soon)<br>
 
