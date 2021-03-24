@@ -7,7 +7,7 @@ Eprescri is a **concept electronic prescription platform, developed for the purs
 **Site of the application: http://52.58.59.241/eprescri/ **
 <br> 
 ### Technical Characteristics and Technologies Involved 
-The website is hosted on an Amazon Web Services Instance of EC2, with OS UBUNTU 20.04, where Apache Server 2.4.41, PHP 7.4.3 and MariaDB 10.3.25 was installed. <br>
+The website is hosted on an Amazon Web Services Instance of EC2, with OS UBUNTU 20.04, where Apache Server 2.4.41, PHP 7.4.3 and MariaDB 10.3.25 were installed. <br>
 The Backend of application is based on vanilia PHP 7.4.3 and mySQL and the front end is based on a [free HTML template](https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/), which use Bootstrap 4.5.3, customized to fit our apllication's needs . Fontawesome icons and Jquerry library also were used, where needed. 
 
 ## User manual & Credentials for testing
